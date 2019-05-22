@@ -39,14 +39,14 @@ class _HomePageState extends State<HomePage> {
         ),
         bottomNavigationBar: CurvedNavigationBar(
           index: 0,
-          height: 75.0,
+          height: 50.0,
           items: <Widget>[
-            Icon(Icons.free_breakfast, size: 30),
-            Icon(Icons.fastfood, size: 30),
+            Icon(Icons.free_breakfast, size: 30, color: Colors.white),
+            Icon(Icons.fastfood, size: 30, color: Colors.white),
           ],
-          color: Colors.white,
-          buttonBackgroundColor: Colors.white,
-          backgroundColor: Colors.blueAccent,
+          color: Colors.blueAccent,
+          buttonBackgroundColor: Colors.blueAccent,
+          backgroundColor: Colors.white,
           animationCurve: Curves.easeInOut,
           animationDuration: Duration(milliseconds: 600),
           onTap: (index) {
@@ -64,12 +64,9 @@ class _HomePageState extends State<HomePage> {
             }
           },
         ),
-        body: Container(
-          color: Colors.blueAccent,
-          child: _page == 0
-              ? BreakfastScreen()
-              : DesertScreen(),
-        ));
+        body: _page == 0
+            ? BreakfastScreen()
+            : DesertScreen());
   }
 }
 

@@ -1,19 +1,89 @@
 import 'package:flutter/material.dart';
+import 'package:dicoding_submission/models/meal.dart';
+import 'package:dicoding_submission/hero/hero_animation.dart';
+import 'package:dicoding_submission/main.dart';
+import 'dart:convert';
 
 class DesertScreen extends StatefulWidget {
   @override
-  DesertPageState createState() => DesertPageState();
+  DesertState createState() => new DesertState();
 }
 
-class DesertPageState extends State<DesertScreen> {
+class DesertState extends State<DesertScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Container(
-          color: Colors.blueAccent,
-          child: Center(
-            child: Text('Desert', style: TextStyle(color: Colors.white))
+      body: getListDesert()
+    );
+  }
+
+  getListDesert() {
+    return Container(
+      child: Center(
+        child: FutureBuilder(
+            future: DefaultAssetBundle.of(context)
+                .loadString('data_local/meals_desert.json'),
+            builder: (ctx, snapshot) {
+              if (snapshot.hasData) {
+                if (snapshot.data != null) {
+                  List<Meal> meals = parseJson(snapshot.data);
+                  return meals.isNotEmpty
+                      ? _showList(context, meals)
+                      : Center(child: Text("No Meal List Found.."));
+                } else {
+                  return Center(child: CircularProgressIndicator());
+                }
+              } else {
+                return Center(child: CircularProgressIndicator());
+              }
+            }),
+      ),
+    );
+  }
+
+  Widget _showList(BuildContext context, List<Meal> data) => GridView.builder(
+    itemCount: data == null ? 0 : data.length,
+    gridDelegate:
+    SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+    itemBuilder: (BuildContext context, int index) {
+      return GestureDetector(
+        child: Card(
+          elevation: 2.0,
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(5))),
+          margin: EdgeInsets.all(10),
+          child: GridTile(
+            child: PhotoHero(
+              tag: data[index].strMeal,
+              onTap: () => {
+                showSnackBar(context, data[index]),
+              },
+              photo: data[index].strMealThumb,
+            ),
+            footer: Container(
+              color: Colors.white70,
+              padding: EdgeInsets.all(3.0),
+              child: Text(
+                data[index].strMeal,
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                    fontWeight: FontWeight.bold, color: Colors.deepOrange),
+              ),
+            ),
           ),
-        ));
+        ),
+      );
+    },
+  );
+
+  List<Meal> parseJson(String response) {
+    if (response == null) {
+      return [];
+    } else {
+      final parsed =
+      json.decode(response.toString()).cast<Map<String, dynamic>>();
+      return parsed.map<Meal>((json) => new Meal.fromJson(json)).toList();
+    }
   }
 }
