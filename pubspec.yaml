@@ -22,8 +22,6 @@ dependencies:
   json_annotation: ^2.0.0
   json_serializable: ^2.0.0
   http: ^0.12.0+1
-  fluttertoast: ^3.0.3
-  curved_navigation_bar: ^0.2.11
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -32,9 +30,6 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  build_runner: ^1.0.0
-  test: ^1.5.3
-  mockito: ^4.0.0
 
 
 # For information on the generic Dart part of this file, see the
@@ -50,40 +45,23 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - data_local/meals_breakfast.json
-    - data_local/meals_desert.json
-    - assets/desert/52767.jpg
-    - assets/desert/52768.jpg
-    - assets/desert/52776.jpg
-    - assets/desert/52853.jpg
-    - assets/desert/52855.jpg
-    - assets/desert/52856.jpg
-    - assets/desert/52858.jpg
-    - assets/desert/52890.jpg
-    - assets/desert/52893.jpg
-    - assets/desert/52894.jpg
-    - assets/desert/52897.jpg
-    - assets/desert/52898.jpg
-    - assets/desert/52909.jpg
-    - assets/desert/52923.jpg
-    - assets/desert/52928.jpg
-    - assets/desert/52961.jpg
-    - assets/breakfast/52771.jpg
-    - assets/breakfast/52785.jpg
-    - assets/breakfast/52807.jpg
-    - assets/breakfast/52816.jpg
-    - assets/breakfast/52829.jpg
-    - assets/breakfast/52835.jpg
-    - assets/breakfast/52844.jpg
-    - assets/breakfast/52864.jpg
-    - assets/breakfast/52866.jpg
-    - assets/breakfast/52870.jpg
-    - assets/breakfast/52871.jpg
-    - assets/breakfast/52872.jpg
-    - assets/breakfast/52906.jpg
-    - assets/breakfast/52908.jpg
-    - assets/breakfast/52911.jpg
-    - assets/breakfast/52955.jpg
+  - data_local/meals.json
+  - assets/52803.jpg
+  - assets/52783.jpg
+  - assets/52842.jpg
+  - assets/52827.jpg
+  - assets/52875.jpg
+  - assets/52816.jpg
+  - assets/52796.jpg
+  - assets/52904.jpg
+  - assets/52770.jpg
+  - assets/52878.jpg
+  - assets/52823.jpg
+  - assets/52818.jpg
+  - assets/52819.jpg
+  - assets/52892.jpg
+  - assets/52921.jpg
+  - assets/52909.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
