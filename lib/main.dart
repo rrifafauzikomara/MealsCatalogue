@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:dicoding_submission/view/home_screan.dart';
+import 'package:dicoding_submission/view/home_screen.dart';
 
 void main() => runApp(MyApp());
 
