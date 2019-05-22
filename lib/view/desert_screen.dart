@@ -19,6 +19,7 @@ class DesertState extends State<DesertScreen> {
 
   getListDesert() {
     return Container(
+      color: Color.fromRGBO(58, 66, 86, 1.0),
       child: Center(
         child: FutureBuilder(
             future: DefaultAssetBundle.of(context)
@@ -28,20 +29,24 @@ class DesertState extends State<DesertScreen> {
                 if (snapshot.data != null) {
                   List<Meal> meals = parseJson(snapshot.data);
                   return meals.isNotEmpty
-                      ? _showList(context, meals)
+                      ? _showListDesert(context, meals)
                       : Center(child: Text("No Meal List Found.."));
                 } else {
-                  return Center(child: CircularProgressIndicator());
+                  return Center(child: CircularProgressIndicator(
+                      valueColor: new AlwaysStoppedAnimation<Color>(Colors.white)
+                  ));
                 }
               } else {
-                return Center(child: CircularProgressIndicator());
+                return Center(child: CircularProgressIndicator(
+                    valueColor: new AlwaysStoppedAnimation<Color>(Colors.white)
+                ));
               }
             }),
       ),
     );
   }
 
-  Widget _showList(BuildContext context, List<Meal> data) => GridView.builder(
+  Widget _showListDesert(BuildContext context, List<Meal> data) => GridView.builder(
     itemCount: data == null ? 0 : data.length,
     gridDelegate:
     SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
@@ -55,14 +60,14 @@ class DesertState extends State<DesertScreen> {
           child: GridTile(
             child: PhotoHero(
               tag: data[index].strMeal,
-              onTap: () => {
-                showSnackBar(context, data[index]),
+              onTap: () {
+                showSnackBar(context, data[index]);
               },
               photo: data[index].strMealThumb,
             ),
             footer: Container(
               color: Colors.white70,
-              padding: EdgeInsets.all(3.0),
+              padding: EdgeInsets.all(5.0),
               child: Text(
                 data[index].strMeal,
                 textAlign: TextAlign.center,

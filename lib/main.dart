@@ -12,6 +12,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'The Meals',
+      theme: ThemeData(
+        primaryColor: Color.fromRGBO(58, 66, 86, 1.0),
+      ),
       home: HomePage(),
     );
   }
@@ -31,22 +34,30 @@ class _HomePageState extends State<HomePage> {
     String title = "The Meals";
     return Scaffold(
         appBar: AppBar(
+          elevation: 0.1,
+          backgroundColor: Color.fromRGBO(58, 66, 86, 1.0),
+          centerTitle: true,
           title: Text(
             title,
             style: TextStyle(color: Colors.white),
-            textAlign: TextAlign.center,
           ),
         ),
         bottomNavigationBar: CurvedNavigationBar(
           index: 0,
           height: 50.0,
           items: <Widget>[
-            Icon(Icons.free_breakfast, size: 30, color: Colors.white),
-            Icon(Icons.fastfood, size: 30, color: Colors.white),
+            Container(
+              padding: EdgeInsets.all(5.0),
+              child: Icon(Icons.free_breakfast, size: 30),
+            ),
+            Container(
+              padding: EdgeInsets.all(5.0),
+              child: Icon(Icons.fastfood, size: 30),
+            ),
           ],
-          color: Colors.blueAccent,
-          buttonBackgroundColor: Colors.blueAccent,
-          backgroundColor: Colors.white,
+          color: Colors.white,
+          buttonBackgroundColor: Colors.white,
+          backgroundColor: Color.fromRGBO(58, 66, 86, 1.0),
           animationCurve: Curves.easeInOut,
           animationDuration: Duration(milliseconds: 600),
           onTap: (index) {

@@ -8,9 +8,16 @@ class MealDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(meal.strMeal),
-      ),
+        appBar: AppBar(
+          centerTitle: true,
+          iconTheme: IconThemeData(
+            color: Colors.white,
+          ),
+          title: Text(
+            meal.strMeal,
+            style: TextStyle(color: Colors.white),
+          ),
+        ),
       body: getDetail()
     );
   }
