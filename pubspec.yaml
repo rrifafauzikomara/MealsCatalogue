@@ -19,10 +19,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  json_annotation: ^2.0.0
-  json_serializable: ^2.0.0
+#  json_annotation: ^2.0.0
+#  json_serializable: ^2.0.0
+  rxdart: ^0.18.0
   http: ^0.12.0+1
-  fluttertoast: ^3.0.3
+#  fluttertoast: ^3.0.3
   curved_navigation_bar: ^0.2.11
 
   # The following adds the Cupertino Icons font to your application.
@@ -49,41 +50,8 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  assets:
-    - data_local/meals_breakfast.json
-    - data_local/meals_desert.json
-    - assets/desert/52767.jpg
-    - assets/desert/52768.jpg
-    - assets/desert/52776.jpg
-    - assets/desert/52853.jpg
-    - assets/desert/52855.jpg
-    - assets/desert/52856.jpg
-    - assets/desert/52858.jpg
-    - assets/desert/52890.jpg
-    - assets/desert/52893.jpg
-    - assets/desert/52894.jpg
-    - assets/desert/52897.jpg
-    - assets/desert/52898.jpg
-    - assets/desert/52909.jpg
-    - assets/desert/52923.jpg
-    - assets/desert/52928.jpg
-    - assets/desert/52961.jpg
-    - assets/breakfast/52771.jpg
-    - assets/breakfast/52785.jpg
-    - assets/breakfast/52807.jpg
-    - assets/breakfast/52816.jpg
-    - assets/breakfast/52829.jpg
-    - assets/breakfast/52835.jpg
-    - assets/breakfast/52844.jpg
-    - assets/breakfast/52864.jpg
-    - assets/breakfast/52866.jpg
-    - assets/breakfast/52870.jpg
-    - assets/breakfast/52871.jpg
-    - assets/breakfast/52872.jpg
-    - assets/breakfast/52906.jpg
-    - assets/breakfast/52908.jpg
-    - assets/breakfast/52911.jpg
-    - assets/breakfast/52955.jpg
+#  assets:
+#    - assets/assets
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
