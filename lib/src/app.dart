@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'package:dicoding_submission/src/view/breakfast_screen.dart';
+import 'package:dicoding_submission/src/view/seafood_screen.dart';
 import 'package:dicoding_submission/src/view/desert_screen.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import '../src/models/meals_list.dart';
 
 class MyApp extends StatelessWidget {
   @override
@@ -73,7 +74,28 @@ class _HomePageState extends State<HomePage> {
           },
         ),
         body: _page == 0
-            ? BreakfastScreen()
-            : DesertScreen());
+            ? DesertScreen()
+            : SeafoodScreen());
   }
+}
+
+showSnackBar(BuildContext context, Meals meal) {
+  String strMeal = meal.strMeal;
+  final snackBar = SnackBar(
+    content: Text('Do you want to see $strMeal details ?'),
+    action: SnackBarAction(
+      label: 'Yes',
+      onPressed: () {
+//        Navigator.push(
+//            context,
+//            PageRouteBuilder(
+//              transitionDuration: Duration(milliseconds: 777),
+//              pageBuilder: (BuildContext context, Animation<double> animation,
+//                  Animation<double> secondaryAnimation) =>
+//                  MealDetail(meal),
+//            ));
+      },
+    ),
+  );
+  Scaffold.of(context).showSnackBar(snackBar);
 }

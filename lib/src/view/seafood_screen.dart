@@ -6,18 +6,17 @@ import 'package:dicoding_submission/src/app.dart';
 //import 'detail_screen.dart';
 //import '../blocs/meals_detail_bloc_provider.dart';
 
-
-class DesertScreen extends StatefulWidget {
+class SeafoodScreen extends StatefulWidget {
   @override
-  DesertState createState() => new DesertState();
+  SeafoodState createState() => new SeafoodState();
 }
 
-class DesertState extends State<DesertScreen> {
+class SeafoodState extends State<SeafoodScreen> {
 
   @override
   void initState() {
     super.initState();
-    bloc.fetchAllMeals('Dessert');
+    bloc.fetchAllMeals('Seafood');
   }
 
 //  @override
@@ -29,11 +28,11 @@ class DesertState extends State<DesertScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: getListDesert()
+      body: getListSeafood()
     );
   }
 
-  getListDesert() {
+  getListSeafood() {
     return Container(
       color: Color.fromRGBO(58, 66, 86, 1.0),
       child: Center(
@@ -41,7 +40,7 @@ class DesertState extends State<DesertScreen> {
           stream: bloc.allMeals,
           builder: (context, AsyncSnapshot<MealsList> snapshot) {
             if (snapshot.hasData) {
-              return _showListDessert(snapshot);
+              return _showListSeafood(snapshot);
             } else if (snapshot.hasError) {
               return Text(snapshot.error.toString());
             }
@@ -54,7 +53,7 @@ class DesertState extends State<DesertScreen> {
     );
   }
 
-  Widget _showListDessert(AsyncSnapshot<MealsList> snapshot) => GridView.builder(
+  Widget _showListSeafood(AsyncSnapshot<MealsList> snapshot) => GridView.builder(
     itemCount: snapshot == null ? 0 : snapshot.data.meals.length,
     gridDelegate:
     SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
