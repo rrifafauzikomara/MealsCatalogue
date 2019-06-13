@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:dicoding_submission/src/view/seafood_screen.dart';
 import 'package:dicoding_submission/src/view/desert_screen.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-import '../src/models/meals_list.dart';
 
 class MyApp extends StatelessWidget {
   @override
@@ -32,8 +31,6 @@ class _HomePageState extends State<HomePage> {
     String title = "The Meals";
     return Scaffold(
         appBar: AppBar(
-          elevation: 0.1,
-          backgroundColor: Color.fromRGBO(58, 66, 86, 1.0),
           centerTitle: true,
           title: Text(
             title,
@@ -79,23 +76,9 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-showSnackBar(BuildContext context, Meals meal) {
-  String strMeal = meal.strMeal;
+showSnackBar(BuildContext context, String mealsName) {
   final snackBar = SnackBar(
-    content: Text('Do you want to see $strMeal details ?'),
-    action: SnackBarAction(
-      label: 'Yes',
-      onPressed: () {
-//        Navigator.push(
-//            context,
-//            PageRouteBuilder(
-//              transitionDuration: Duration(milliseconds: 777),
-//              pageBuilder: (BuildContext context, Animation<double> animation,
-//                  Animation<double> secondaryAnimation) =>
-//                  MealDetail(meal),
-//            ));
-      },
-    ),
+    content: Text(mealsName)
   );
   Scaffold.of(context).showSnackBar(snackBar);
 }

@@ -14,16 +14,16 @@ class MealsApiProvider {
     if (response.statusCode == 200) {
       return MealsList.fromJson(json.decode(response.body));
     } else {
-      throw Exception('Failed to load movie');
+      throw Exception('Failed to load meals');
     }
   }
 
-//  Future<TrailerModel> fetchTrailer(String mealsId) async {
-//    final response = await client.get(_baseUrl + 'lookup.php?i=$mealsId');
-//    if (response.statusCode == 200) {
-//      return TrailerModel.fromJson(json.decode(response.body));
-//    } else {
-//      throw Exception('Failed to load trailers');
-//    }
-//  }
+  Future<MealsDetail> fetchDetailMeals(String mealsId) async {
+    final response = await client.get(_baseUrl + 'lookup.php?i=$mealsId');
+    if (response.statusCode == 200) {
+      return MealsDetail.fromJson(json.decode(response.body));
+    } else {
+      throw Exception('Failed to load meals');
+    }
+  }
 }

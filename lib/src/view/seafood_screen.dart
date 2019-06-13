@@ -3,8 +3,7 @@ import '../models/meals_list.dart';
 import '../blocs/meals_list_bloc.dart';
 import '../hero/hero_animation.dart';
 import 'package:dicoding_submission/src/app.dart';
-//import 'detail_screen.dart';
-//import '../blocs/meals_detail_bloc_provider.dart';
+import 'detail_screen.dart';
 
 class SeafoodScreen extends StatefulWidget {
   @override
@@ -18,12 +17,6 @@ class SeafoodState extends State<SeafoodScreen> {
     super.initState();
     bloc.fetchAllMeals('Seafood');
   }
-
-//  @override
-//  void dispose() {
-//    super.dispose();
-//    bloc.dispose();
-//  }
 
   @override
   Widget build(BuildContext context) {
@@ -68,13 +61,16 @@ class SeafoodState extends State<SeafoodScreen> {
             child: PhotoHero(
               tag: snapshot.data.meals[index].strMeal,
               onTap: () {
-                showSnackBar(context, snapshot.data.meals[index]);
-
-//                Navigator.push(
-//                    context,
-//                    MaterialPageRoute(
-//                        builder: (context) => DetailMeals(
-//                            id: snapshot.data.meals[index].idMeal)));
+                showSnackBar(context, snapshot.data.meals[index].strMeal);
+                Navigator.push(
+                    context,
+                    PageRouteBuilder(
+                      transitionDuration: Duration(milliseconds: 777),
+                      pageBuilder: (BuildContext context, Animation<double> animation,
+                          Animation<double> secondaryAnimation) =>
+                          DetailScreen(
+                              id: snapshot.data.meals[index].idMeal),
+                    ));
               },
               photo: snapshot.data.meals[index].strMealThumb,
             ),
