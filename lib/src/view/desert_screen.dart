@@ -19,6 +19,12 @@ class DesertState extends State<DesertScreen> {
     bloc.fetchAllMeals('Dessert');
   }
 
+//  @override
+//  void dispose() {
+//    bloc.dispose();
+//    super.dispose();
+//  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,7 +76,7 @@ class DesertState extends State<DesertScreen> {
                       pageBuilder: (BuildContext context, Animation<double> animation,
                           Animation<double> secondaryAnimation) =>
                           DetailScreen(
-                              id: snapshot.data.meals[index].idMeal),
+                              idMeal: snapshot.data.meals[index].idMeal),
                     ));
               },
               photo: snapshot.data.meals[index].strMealThumb,

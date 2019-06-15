@@ -18,6 +18,12 @@ class SeafoodState extends State<SeafoodScreen> {
     bloc.fetchAllMeals('Seafood');
   }
 
+//  @override
+//  void dispose() {
+//    bloc.dispose();
+//    super.dispose();
+//  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -69,7 +75,7 @@ class SeafoodState extends State<SeafoodScreen> {
                       pageBuilder: (BuildContext context, Animation<double> animation,
                           Animation<double> secondaryAnimation) =>
                           DetailScreen(
-                              id: snapshot.data.meals[index].idMeal),
+                              idMeal: snapshot.data.meals[index].idMeal),
                     ));
               },
               photo: snapshot.data.meals[index].strMealThumb,
