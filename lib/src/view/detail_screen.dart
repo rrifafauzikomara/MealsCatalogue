@@ -6,16 +6,17 @@ import 'package:dicoding_submission/src/models/meals_detail.dart';
 class DetailScreen extends StatefulWidget {
 
   final String idMeal;
+  final String strMeal;
   final String strMealThumb;
 
-  const DetailScreen({Key key, @required this.idMeal, this.strMealThumb}) : super(key: key);
+  const DetailScreen({Key key, @required this.idMeal, this.strMeal, this.strMealThumb}) : super(key: key);
 
   @override
   _DetailScreenState createState() => _DetailScreenState();
 
 }
 
-class _DetailScreenState extends State<DetailScreen> {
+class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMixin{
 
   @override
   void initState() {
@@ -32,17 +33,33 @@ class _DetailScreenState extends State<DetailScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          iconTheme: IconThemeData(
-            color: Colors.white,
-          ),
-          title: Text(
-            'Detail Meals',
-            style: TextStyle(color: Colors.white),
-          ),
+        body: NestedScrollView(
+          headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+            return <Widget>[
+              SliverAppBar(
+                backgroundColor: Colors.transparent,
+                expandedHeight: 270,
+                floating: false,
+                pinned: true,
+                elevation: 0.0,
+                flexibleSpace: FlexibleSpaceBar(
+                  background: Hero(
+                    tag: widget.strMeal,
+                    child: Material(
+                      child: InkWell(
+                        child: Image.network(
+                            widget.strMealThumb,
+                            width: double.infinity,
+                            fit: BoxFit.cover),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ];
+          },
+          body: getListDetail(),
         ),
-        body: getListDetail()
     );
   }
 
@@ -52,9 +69,6 @@ class _DetailScreenState extends State<DetailScreen> {
         builder: (context, AsyncSnapshot<MealsDetail> snapshot) {
           if (snapshot.hasData) {
             return _showListDetail(
-                snapshot.data.meals[0].idMeal,
-                snapshot.data.meals[0].strMeal,
-                snapshot.data.meals[0].strMealThumb,
                 snapshot.data.meals[0].strCategory,
                 snapshot.data.meals[0].strArea,
                 snapshot.data.meals[0].strIngredient1,
@@ -73,9 +87,6 @@ class _DetailScreenState extends State<DetailScreen> {
   }
 
   Widget _showListDetail(
-      String id,
-      String name,
-      String image,
       String category,
       String area,
       String ingredient1,
@@ -87,19 +98,11 @@ class _DetailScreenState extends State<DetailScreen> {
     return SingleChildScrollView(
       child: Column(
         children: <Widget>[
-          Hero(
-            tag: name,
-            child: Material(
-              child: InkWell(
-                child: Image.network(image, fit: BoxFit.cover),
-              ),
-            ),
-          ),
           Container(
             alignment: Alignment.center,
             padding: EdgeInsets.all(3.0),
             child: Text(
-              name,
+              widget.strMeal,
               style: TextStyle(
                   fontSize: 17,
                   fontWeight: FontWeight.bold,

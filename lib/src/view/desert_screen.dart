@@ -4,6 +4,7 @@ import '../blocs/meals_list_bloc.dart';
 import '../hero/hero_animation.dart';
 import 'package:dicoding_submission/src/app.dart';
 import 'detail_screen.dart';
+import 'package:toast/toast.dart';
 
 
 class DesertScreen extends StatefulWidget {
@@ -68,7 +69,7 @@ class DesertState extends State<DesertScreen> {
             child: PhotoHero(
               tag: snapshot.data.meals[index].strMeal,
               onTap: () {
-                showSnackBar(context, snapshot.data.meals[index].strMeal);
+                showToast(context, snapshot.data.meals[index].strMeal, duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
                 Navigator.push(
                     context,
                     PageRouteBuilder(
@@ -76,7 +77,9 @@ class DesertState extends State<DesertScreen> {
                       pageBuilder: (BuildContext context, Animation<double> animation,
                           Animation<double> secondaryAnimation) =>
                           DetailScreen(
-                              idMeal: snapshot.data.meals[index].idMeal),
+                              idMeal: snapshot.data.meals[index].idMeal,
+                              strMeal: snapshot.data.meals[index].strMeal,
+                              strMealThumb: snapshot.data.meals[index].strMealThumb),
                     ));
               },
               photo: snapshot.data.meals[index].strMealThumb,
