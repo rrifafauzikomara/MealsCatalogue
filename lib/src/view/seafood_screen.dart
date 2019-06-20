@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../models/meals_list.dart';
+import '../models/meals.dart';
 import '../blocs/meals_list_bloc.dart';
 import '../hero/hero_animation.dart';
 import 'package:dicoding_submission/src/app.dart';
@@ -13,17 +13,19 @@ class SeafoodScreen extends StatefulWidget {
 
 class SeafoodState extends State<SeafoodScreen> {
 
+  final bloc = MealsBloc();
+
   @override
   void initState() {
     super.initState();
     bloc.fetchAllMeals('Seafood');
   }
 
-//  @override
-//  void dispose() {
-//    bloc.dispose();
-//    super.dispose();
-//  }
+  @override
+  void dispose() {
+    bloc.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +40,7 @@ class SeafoodState extends State<SeafoodScreen> {
       child: Center(
         child: StreamBuilder(
           stream: bloc.allMeals,
-          builder: (context, AsyncSnapshot<MealsList> snapshot) {
+          builder: (context, AsyncSnapshot<MealsResult> snapshot) {
             if (snapshot.hasData) {
               return _showListSeafood(snapshot);
             } else if (snapshot.hasError) {
@@ -53,7 +55,7 @@ class SeafoodState extends State<SeafoodScreen> {
     );
   }
 
-  Widget _showListSeafood(AsyncSnapshot<MealsList> snapshot) => GridView.builder(
+  Widget _showListSeafood(AsyncSnapshot<MealsResult> snapshot) => GridView.builder(
     itemCount: snapshot == null ? 0 : snapshot.data.meals.length,
     gridDelegate:
     SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),

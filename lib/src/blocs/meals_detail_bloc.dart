@@ -1,15 +1,15 @@
 import '../resources/repository.dart';
 import 'package:rxdart/rxdart.dart';
-import '../models/meals_detail.dart';
+import '../models/meals.dart';
 
 class MealsDetailBloc {
   final _repository = Repository();
-  final _mealsDetailFetcher = PublishSubject<MealsDetail>();
+  final _mealsDetailFetcher = PublishSubject<MealsResult>();
 
-  Observable<MealsDetail> get detailMeals => _mealsDetailFetcher.stream;
+  Observable<MealsResult> get detailMeals => _mealsDetailFetcher.stream;
 
   fetchDetailMeals(String mealsId) async {
-    MealsDetail mealsDetail = await _repository.fetchDetailMeals(mealsId);
+    MealsResult mealsDetail = await _repository.fetchDetailMeals(mealsId);
     _mealsDetailFetcher.sink.add(mealsDetail);
   }
 
@@ -17,5 +17,3 @@ class MealsDetailBloc {
     _mealsDetailFetcher.close();
   }
 }
-
-final bloc = MealsDetailBloc();

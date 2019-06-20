@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import '../models/meals_detail.dart';
+import '../models/meals.dart';
 import '../blocs/meals_detail_bloc.dart';
-import 'package:dicoding_submission/src/models/meals_detail.dart';
+import 'package:dicoding_submission/src/models/meals.dart';
+import 'package:dicoding_submission/src/app.dart';
+import 'package:toast/toast.dart';
 
 class DetailScreen extends StatefulWidget {
 
@@ -18,21 +20,27 @@ class DetailScreen extends StatefulWidget {
 
 class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMixin{
 
+  final bloc = MealsDetailBloc();
+  Icon actionIcon = new Icon(Icons.favorite_border, color: Colors.pink,);
+  bool _isFavorite = false;
+  MealsResult mealsResult;
+
   @override
   void initState() {
     super.initState();
     bloc.fetchDetailMeals(widget.idMeal);
   }
 
-//  @override
-//  void dispose() {
-//    bloc.dispose();
-//    super.dispose();
-//  }
+  @override
+  void dispose() {
+    bloc.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromRGBO(58, 66, 86, 1.0),
       body: NestedScrollView(
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
           return <Widget>[
@@ -60,14 +68,22 @@ class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMix
         },
         body: getListDetail(),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          showToast(context, "Favorite", duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
+        },
+        backgroundColor: Colors.pinkAccent,
+        child: Icon(Icons.favorite_border),
+      ),
     );
   }
 
   getListDetail() {
     return StreamBuilder(
         stream: bloc.detailMeals,
-        builder: (context, AsyncSnapshot<MealsDetail> snapshot) {
+        builder: (context, AsyncSnapshot<MealsResult> snapshot) {
           if (snapshot.hasData) {
+            mealsResult = snapshot.data;
             return _showListDetail(
                 snapshot.data.meals[0].strCategory,
                 snapshot.data.meals[0].strArea,
@@ -81,7 +97,7 @@ class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMix
             return Text(snapshot.error.toString());
           }
           return Center(child: CircularProgressIndicator(
-              valueColor: AlwaysStoppedAnimation<Color>(Color.fromRGBO(58, 66, 86, 1.0),)
+              valueColor: AlwaysStoppedAnimation<Color>(Colors.white)
           ));
         });
   }
@@ -99,14 +115,16 @@ class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMix
       child: Column(
         children: <Widget>[
           Container(
-            alignment: Alignment.center,
-            padding: EdgeInsets.all(3.0),
-            child: Text(
-              widget.strMeal,
-              style: TextStyle(
-                  fontSize: 17,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black),
+            margin: EdgeInsets.all(20.0),
+            padding: EdgeInsets.all(5.0),
+            child: Center(
+              child: Text(
+                widget.strMeal,
+                style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
+              ),
             ),
           ),
           Container(
@@ -120,7 +138,7 @@ class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMix
                     style: TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.bold,
-                        color: Colors.black),
+                        color: Colors.white),
                   ),
                 ),
                 Align(
@@ -128,7 +146,8 @@ class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMix
                   child: Text(
                     category,
                     style: TextStyle(
-                        fontStyle: FontStyle.normal, color: Colors.black),
+                        fontStyle: FontStyle.normal,
+                        color: Colors.white),
                   ),
                 ),
               ],
@@ -145,7 +164,7 @@ class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMix
                     style: TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.bold,
-                        color: Colors.black),
+                        color: Colors.white),
                   ),
                 ),
                 Align(
@@ -153,7 +172,8 @@ class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMix
                   child: Text(
                     area,
                     style: TextStyle(
-                        fontStyle: FontStyle.normal, color: Colors.black),
+                        fontStyle: FontStyle.normal,
+                        color: Colors.white),
                   ),
                 ),
               ],
@@ -170,7 +190,7 @@ class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMix
                     style: TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.bold,
-                        color: Colors.black),
+                        color: Colors.white),
                   ),
                 ),
                 Align(
@@ -183,7 +203,8 @@ class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMix
                         ingredient4 + ', ' +
                         ingredient5,
                     style: TextStyle(
-                        fontStyle: FontStyle.italic, color: Colors.black),
+                        fontStyle: FontStyle.italic,
+                        color: Colors.white),
                   ),
                 ),
               ],
@@ -200,7 +221,7 @@ class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMix
                     style: TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.bold,
-                        color: Colors.black),
+                        color: Colors.white),
                   ),
                 ),
                 Align(
@@ -208,7 +229,8 @@ class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMix
                   child: Text(
                     desc,
                     style: TextStyle(
-                        fontStyle: FontStyle.italic, color: Colors.black),
+                        fontStyle: FontStyle.italic,
+                        color: Colors.white),
                   ),
                 ),
               ],
