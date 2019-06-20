@@ -1,21 +1,20 @@
-import '../resources/repository.dart';
+import 'package:dicoding_submission/src/resources/repository/repository.dart';
 import 'package:rxdart/rxdart.dart';
-import '../models/meals_list.dart';
+import '../models/meals.dart';
 
 class MealsBloc {
-  final _repository = Repository();
-  final _mealsFetcher = PublishSubject<MealsList>();
 
-  Observable<MealsList> get allMeals => _mealsFetcher.stream;
+  final _repository = Repository();
+  final _mealsFetcher = PublishSubject<MealsResult>();
+
+  Observable<MealsResult> get allMeals => _mealsFetcher.stream;
 
   fetchAllMeals(String mealsType) async {
-    MealsList mealsList = await _repository.fetchAllMeals(mealsType);
-    _mealsFetcher.sink.add(mealsList);
+    MealsResult mealsResult = await _repository.fetchAllMeals(mealsType);
+    _mealsFetcher.sink.add(mealsResult);
   }
 
   dispose() {
     _mealsFetcher.close();
   }
 }
-
-final bloc = MealsBloc();

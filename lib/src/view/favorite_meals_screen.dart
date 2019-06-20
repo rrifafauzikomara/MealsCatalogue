@@ -3,15 +3,24 @@ import 'package:flutter/material.dart';
 
 class FavoriteScreen extends StatefulWidget {
   @override
-  FavoriteScreenState createState() => new FavoriteScreenState();
+  _FavoriteScreenState createState() => _FavoriteScreenState();
 }
 
-class FavoriteScreenState extends State<FavoriteScreen> {
+class _FavoriteScreenState extends State<FavoriteScreen> {
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Text('Hello Favorite Food'),
+        body: getListFavorite(),
+    );
+  }
+
+  getListFavorite() {
+    return Container(
+      color: Color.fromRGBO(58, 66, 86, 1.0),
+      child: Center(
+        child: Text('Hello Favorite'),
+      ),
     );
   }
 

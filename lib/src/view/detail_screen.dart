@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import '../models/meals_detail.dart';
+import '../models/meals.dart';
 import '../blocs/meals_detail_bloc.dart';
-import 'package:dicoding_submission/src/models/meals_detail.dart';
+import 'package:dicoding_submission/src/models/meals.dart';
+import 'package:dicoding_submission/src/app.dart';
+import 'package:toast/toast.dart';
 
 class DetailScreen extends StatefulWidget {
 
@@ -18,56 +20,70 @@ class DetailScreen extends StatefulWidget {
 
 class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMixin{
 
+  final bloc = MealsDetailBloc();
+  Icon actionIcon = new Icon(Icons.favorite_border, color: Colors.pink,);
+  bool _isFavorite = false;
+  MealsResult mealsResult;
+
   @override
   void initState() {
     super.initState();
     bloc.fetchDetailMeals(widget.idMeal);
   }
 
-//  @override
-//  void dispose() {
-//    bloc.dispose();
-//    super.dispose();
-//  }
+  @override
+  void dispose() {
+    bloc.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: NestedScrollView(
-          headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-            return <Widget>[
-              SliverAppBar(
-                backgroundColor: Colors.transparent,
-                expandedHeight: 270,
-                floating: false,
-                pinned: true,
-                elevation: 0.0,
-                flexibleSpace: FlexibleSpaceBar(
-                  background: Hero(
-                    tag: widget.strMeal,
-                    child: Material(
-                      child: InkWell(
-                        child: Image.network(
-                            widget.strMealThumb,
-                            width: double.infinity,
-                            fit: BoxFit.cover),
-                      ),
+      backgroundColor: Color.fromRGBO(58, 66, 86, 1.0),
+      body: NestedScrollView(
+        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+          return <Widget>[
+            SliverAppBar(
+              backgroundColor: Colors.transparent,
+              expandedHeight: 270,
+              floating: false,
+              pinned: true,
+              elevation: 0.0,
+              flexibleSpace: FlexibleSpaceBar(
+                background: Hero(
+                  tag: widget.strMeal,
+                  child: Material(
+                    child: InkWell(
+                      child: Image.network(
+                          widget.strMealThumb,
+                          width: double.infinity,
+                          fit: BoxFit.cover),
                     ),
                   ),
                 ),
               ),
-            ];
-          },
-          body: getListDetail(),
-        ),
+            ),
+          ];
+        },
+        body: getListDetail(),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          showToast(context, "Favorite", duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
+        },
+        backgroundColor: Colors.pinkAccent,
+        child: Icon(Icons.favorite_border),
+      ),
     );
   }
 
   getListDetail() {
     return StreamBuilder(
         stream: bloc.detailMeals,
-        builder: (context, AsyncSnapshot<MealsDetail> snapshot) {
+        builder: (context, AsyncSnapshot<MealsResult> snapshot) {
           if (snapshot.hasData) {
+            mealsResult = snapshot.data;
             return _showListDetail(
                 snapshot.data.meals[0].strCategory,
                 snapshot.data.meals[0].strArea,
@@ -81,7 +97,7 @@ class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMix
             return Text(snapshot.error.toString());
           }
           return Center(child: CircularProgressIndicator(
-              valueColor: AlwaysStoppedAnimation<Color>(Color.fromRGBO(58, 66, 86, 1.0),)
+              valueColor: AlwaysStoppedAnimation<Color>(Colors.white)
           ));
         });
   }
@@ -99,14 +115,16 @@ class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMix
       child: Column(
         children: <Widget>[
           Container(
-            alignment: Alignment.center,
-            padding: EdgeInsets.all(3.0),
-            child: Text(
-              widget.strMeal,
-              style: TextStyle(
-                  fontSize: 17,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black),
+            margin: EdgeInsets.all(20.0),
+            padding: EdgeInsets.all(5.0),
+            child: Center(
+              child: Text(
+                widget.strMeal,
+                style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
+              ),
             ),
           ),
           Container(
@@ -120,7 +138,7 @@ class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMix
                     style: TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.bold,
-                        color: Colors.black),
+                        color: Colors.white),
                   ),
                 ),
                 Align(
@@ -128,7 +146,8 @@ class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMix
                   child: Text(
                     category,
                     style: TextStyle(
-                        fontStyle: FontStyle.normal, color: Colors.black),
+                        fontStyle: FontStyle.normal,
+                        color: Colors.white),
                   ),
                 ),
               ],
@@ -145,7 +164,7 @@ class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMix
                     style: TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.bold,
-                        color: Colors.black),
+                        color: Colors.white),
                   ),
                 ),
                 Align(
@@ -153,7 +172,8 @@ class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMix
                   child: Text(
                     area,
                     style: TextStyle(
-                        fontStyle: FontStyle.normal, color: Colors.black),
+                        fontStyle: FontStyle.normal,
+                        color: Colors.white),
                   ),
                 ),
               ],
@@ -170,7 +190,7 @@ class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMix
                     style: TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.bold,
-                        color: Colors.black),
+                        color: Colors.white),
                   ),
                 ),
                 Align(
@@ -183,7 +203,8 @@ class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMix
                         ingredient4 + ', ' +
                         ingredient5,
                     style: TextStyle(
-                        fontStyle: FontStyle.italic, color: Colors.black),
+                        fontStyle: FontStyle.italic,
+                        color: Colors.white),
                   ),
                 ),
               ],
@@ -200,7 +221,7 @@ class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMix
                     style: TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.bold,
-                        color: Colors.black),
+                        color: Colors.white),
                   ),
                 ),
                 Align(
@@ -208,7 +229,8 @@ class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMix
                   child: Text(
                     desc,
                     style: TextStyle(
-                        fontStyle: FontStyle.italic, color: Colors.black),
+                        fontStyle: FontStyle.italic,
+                        color: Colors.white),
                   ),
                 ),
               ],
@@ -219,199 +241,3 @@ class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMix
     );
   }
 }
-
-//class DetailScreen extends StatelessWidget {
-//
-//  final String id;
-//
-//  DetailScreen({Key key, @required this.id}) : super(key: key);
-//
-//  @override
-//  Widget build(BuildContext context) {
-//    bloc.fetchDetailMeals(id);
-//    return Scaffold(
-//        appBar: AppBar(
-//          centerTitle: true,
-//          iconTheme: IconThemeData(
-//            color: Colors.white,
-//          ),
-//          title: Text(
-//            'Detail Meals',
-//            style: TextStyle(color: Colors.white),
-//          ),
-//        ),
-//        body: getListDetail()
-//    );
-//  }
-//
-//  getListDetail() {
-//    return StreamBuilder(
-//        stream: bloc.detailMeals,
-//        builder: (context, AsyncSnapshot<MealsDetail> snapshot) {
-//          if (snapshot.hasData) {
-//            return _showListDetail(
-//                snapshot.data.meals[0].idMeal,
-//                snapshot.data.meals[0].strMeal,
-//                snapshot.data.meals[0].strMealThumb,
-//                snapshot.data.meals[0].strCategory,
-//                snapshot.data.meals[0].strArea,
-//                snapshot.data.meals[0].strIngredient1,
-//                snapshot.data.meals[0].strIngredient2,
-//                snapshot.data.meals[0].strIngredient3,
-//                snapshot.data.meals[0].strIngredient4,
-//                snapshot.data.meals[0].strIngredient5,
-//                snapshot.data.meals[0].strInstructions);
-//          } else if (snapshot.hasError) {
-//            return Text(snapshot.error.toString());
-//          }
-//          return Center(child: CircularProgressIndicator(
-//              valueColor: AlwaysStoppedAnimation<Color>(Color.fromRGBO(58, 66, 86, 1.0),)
-//          ));
-//        });
-//  }
-//
-//  Widget _showListDetail(
-//      String id,
-//      String name,
-//      String image,
-//      String category,
-//      String area,
-//      String ingredient1,
-//      String ingredient2,
-//      String ingredient3,
-//      String ingredient4,
-//      String ingredient5,
-//      String desc) {
-//    return SingleChildScrollView(
-//      child: Column(
-//        children: <Widget>[
-//          Hero(
-//            tag: name,
-//            child: Material(
-//              child: InkWell(
-//                child: Image.network(image, fit: BoxFit.cover),
-//              ),
-//            ),
-//          ),
-//          Container(
-//            alignment: Alignment.center,
-//            padding: EdgeInsets.all(3.0),
-//            child: Text(
-//              name,
-//              style: TextStyle(
-//                  fontSize: 17,
-//                  fontWeight: FontWeight.bold,
-//                  color: Colors.black),
-//            ),
-//          ),
-//          Container(
-//            padding: EdgeInsets.all(5.0),
-//            child: Row(
-//              children: <Widget>[
-//                Align(
-//                  alignment: Alignment.centerLeft,
-//                  child: Text(
-//                    "Category : ",
-//                    style: TextStyle(
-//                        fontSize: 15,
-//                        fontWeight: FontWeight.bold,
-//                        color: Colors.black),
-//                  ),
-//                ),
-//                Align(
-//                  alignment: Alignment.centerLeft,
-//                  child: Text(
-//                    category,
-//                    style: TextStyle(
-//                        fontStyle: FontStyle.normal, color: Colors.black),
-//                  ),
-//                ),
-//              ],
-//            ),
-//          ),
-//          Container(
-//            padding: EdgeInsets.all(5.0),
-//            child: Row(
-//              children: <Widget>[
-//                Align(
-//                  alignment: Alignment.centerLeft,
-//                  child: Text(
-//                    "Area : ",
-//                    style: TextStyle(
-//                        fontSize: 15,
-//                        fontWeight: FontWeight.bold,
-//                        color: Colors.black),
-//                  ),
-//                ),
-//                Align(
-//                  alignment: Alignment.centerLeft,
-//                  child: Text(
-//                    area,
-//                    style: TextStyle(
-//                        fontStyle: FontStyle.normal, color: Colors.black),
-//                  ),
-//                ),
-//              ],
-//            ),
-//          ),
-//          Container(
-//            padding: EdgeInsets.all(5.0),
-//            child: Column(
-//              children: <Widget>[
-//                Align(
-//                  alignment: Alignment.centerLeft,
-//                  child: Text(
-//                    "Ingredient :",
-//                    style: TextStyle(
-//                        fontSize: 15,
-//                        fontWeight: FontWeight.bold,
-//                        color: Colors.black),
-//                  ),
-//                ),
-//                Align(
-//                  alignment: Alignment.centerLeft,
-//                  child: Text(
-//                    ingredient1+ ', ' +
-//                        ingredient1 + ', ' +
-//                        ingredient2 + ', ' +
-//                        ingredient3 + ', ' +
-//                        ingredient4 + ', ' +
-//                        ingredient5,
-//                    style: TextStyle(
-//                        fontStyle: FontStyle.italic, color: Colors.black),
-//                  ),
-//                ),
-//              ],
-//            ),
-//          ),
-//          Container(
-//            padding: EdgeInsets.all(5.0),
-//            child: Column(
-//              children: <Widget>[
-//                Align(
-//                  alignment: Alignment.centerLeft,
-//                  child: Text(
-//                    "Instructions :",
-//                    style: TextStyle(
-//                        fontSize: 15,
-//                        fontWeight: FontWeight.bold,
-//                        color: Colors.black),
-//                  ),
-//                ),
-//                Align(
-//                  alignment: Alignment.centerLeft,
-//                  child: Text(
-//                    desc,
-//                    style: TextStyle(
-//                        fontStyle: FontStyle.italic, color: Colors.black),
-//                  ),
-//                ),
-//              ],
-//            ),
-//          ),
-//        ],
-//      ),
-//    );
-//  }
-//
-//}
