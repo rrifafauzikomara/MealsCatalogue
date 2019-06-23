@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import '../models/meals.dart';
 import '../blocs/meals_detail_bloc.dart';
 import 'package:dicoding_submission/src/models/meals.dart';
-import 'package:dicoding_submission/src/app.dart';
-import 'package:toast/toast.dart';
 
 class DetailScreen extends StatefulWidget {
 
@@ -21,8 +19,6 @@ class DetailScreen extends StatefulWidget {
 class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMixin{
 
   final bloc = MealsDetailBloc();
-  Icon actionIcon = new Icon(Icons.favorite_border, color: Colors.pink,);
-  bool _isFavorite = false;
   MealsResult mealsResult;
 
   @override
@@ -45,12 +41,18 @@ class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMix
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
           return <Widget>[
             SliverAppBar(
-              backgroundColor: Colors.transparent,
               expandedHeight: 270,
               floating: false,
               pinned: true,
-              elevation: 0.0,
               flexibleSpace: FlexibleSpaceBar(
+                centerTitle: true,
+                title: Text(widget.strMeal.length > 24 ? widget.strMeal.substring(0, 24) : widget.strMeal,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18.0,
+                  ),
+                ),
                 background: Hero(
                   tag: widget.strMeal,
                   child: Material(
@@ -67,13 +69,6 @@ class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMix
           ];
         },
         body: getListDetail(),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          showToast(context, "Favorite", duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
-        },
-        backgroundColor: Colors.pinkAccent,
-        child: Icon(Icons.favorite_border),
       ),
     );
   }
@@ -114,19 +109,6 @@ class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMix
     return SingleChildScrollView(
       child: Column(
         children: <Widget>[
-          Container(
-            margin: EdgeInsets.all(20.0),
-            padding: EdgeInsets.all(5.0),
-            child: Center(
-              child: Text(
-                widget.strMeal,
-                style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white),
-              ),
-            ),
-          ),
           Container(
             padding: EdgeInsets.all(5.0),
             child: Row(
