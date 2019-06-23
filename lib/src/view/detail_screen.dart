@@ -45,12 +45,18 @@ class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMix
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
           return <Widget>[
             SliverAppBar(
-              backgroundColor: Colors.transparent,
               expandedHeight: 270,
               floating: false,
               pinned: true,
-              elevation: 0.0,
               flexibleSpace: FlexibleSpaceBar(
+                centerTitle: true,
+                title: Text(widget.strMeal.length > 24 ? widget.strMeal.substring(0, 24) : widget.strMeal,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18.0,
+                  ),
+                ),
                 background: Hero(
                   tag: widget.strMeal,
                   child: Material(
@@ -114,19 +120,6 @@ class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMix
     return SingleChildScrollView(
       child: Column(
         children: <Widget>[
-          Container(
-            margin: EdgeInsets.all(20.0),
-            padding: EdgeInsets.all(5.0),
-            child: Center(
-              child: Text(
-                widget.strMeal,
-                style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white),
-              ),
-            ),
-          ),
           Container(
             padding: EdgeInsets.all(5.0),
             child: Row(
