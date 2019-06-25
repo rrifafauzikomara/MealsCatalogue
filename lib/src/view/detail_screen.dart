@@ -24,9 +24,7 @@ class DetailScreen extends StatefulWidget {
 class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMixin{
 
   final bloc = MealsDetailBloc();
-  Icon actionIcon = new Icon(Icons.favorite_border, color: Colors.pink,);
   MealsResult mealsResult;
-  bool _isChanged = false;
   bool _isFavorite = false;
 
   @override
@@ -55,6 +53,9 @@ class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMix
               expandedHeight: 270,
               floating: false,
               pinned: true,
+              actions: <Widget>[
+                _buildActionAppBar(),
+              ],
               flexibleSpace: FlexibleSpaceBar(
                 centerTitle: true,
                 title: Text(widget.strMeal.length > 24 ? widget.strMeal.substring(0, 24) : widget.strMeal,
@@ -81,13 +82,6 @@ class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMix
         },
         body: getListDetail(),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          showToast(context, "Favorite", duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
-        },
-        backgroundColor: Colors.pinkAccent,
-        child: _buildActionAppBar(),
-      ),
     );
   }
 
@@ -97,13 +91,12 @@ class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMix
         onTap: () {
           FavoriteProvider.db.deleteFavoriteFoodById(widget.idMeal).then((value) {
             if (value > 0) {
-              _isChanged = true;
               setState(() => _isFavorite = false);
             }
           });
+          showToast(context, "Remove from Favorite", duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
         },
         child: Padding(
-          key: Key("options menu favorite"),
           padding: const EdgeInsets.all(16.0),
           child: Icon(Icons.favorite),
         ),
@@ -115,18 +108,16 @@ class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMix
             idMeal: widget.idMeal,
             name: widget.strMeal,
             thumbnail: widget.strMealThumb,
-//            material: _materials.toString(),
             type: widget.type,
           );
           FavoriteProvider.db.insertFavoriteFood(favoriteFood).then((value) {
             if (value > 0) {
-              _isChanged = true;
               setState(() => _isFavorite = true);
             }
           });
+          showToast(context, "Add to Favorite", duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
         },
         child: Padding(
-          key: Key("options menu favorite"),
           padding: const EdgeInsets.all(16.0),
           child: Icon(Icons.favorite_border),
         ),
