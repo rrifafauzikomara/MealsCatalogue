@@ -5,7 +5,6 @@ import 'package:dicoding_submission/src/models/meals.dart';
 import 'package:dicoding_submission/src/app.dart';
 import 'package:toast/toast.dart';
 import 'package:dicoding_submission/src/resources/local/favorite_provider.dart';
-import 'package:dicoding_submission/src/models/favorite_meals.dart';
 
 class DetailScreen extends StatefulWidget {
 
@@ -104,7 +103,7 @@ class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMix
     } else {
       return GestureDetector(
         onTap: () {
-          FavoriteMeals favoriteFood = FavoriteMeals(
+          Meals favoriteFood = Meals(
             idMeal: widget.idMeal,
             strMeal: widget.strMeal,
             strMealThumb: widget.strMealThumb,

@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:dicoding_submission/src/models/favorite_meals.dart';
+import 'package:dicoding_submission/src/models/meals.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
@@ -58,12 +58,12 @@ class FavoriteProvider {
         });
   }
 
-  Future<List<FavoriteMeals>> getFavoriteFoodsByType(String type) async {
+  Future<List<Meals>> getFavoriteFoodsByType(String type) async {
     final db = await database;
     var res = await db.query("favorite", where: "type = ?", whereArgs: [type]);
-    List<FavoriteMeals> favoriteFoods = res.isEmpty
+    List<Meals> favoriteFoods = res.isEmpty
         ? []
-        : res.map((item) => FavoriteMeals.fromJson(item)).toList();
+        : res.map((item) => Meals.fromJson(item)).toList();
     return favoriteFoods;
   }
 
@@ -71,10 +71,10 @@ class FavoriteProvider {
     final db = await database;
     var res =
     await db.query("favorite", where: "idMeal = ?", whereArgs: [idMeal]);
-    return res.isEmpty ? null : FavoriteMeals.fromJson(res.first);
+    return res.isEmpty ? null : Meals.fromJson(res.first);
   }
 
-  insertFavoriteFood(FavoriteMeals favoriteFood) async {
+  insertFavoriteFood(Meals favoriteFood) async {
     final db = await database;
     var res = await db.insert("favorite", favoriteFood.toJson());
     return res;

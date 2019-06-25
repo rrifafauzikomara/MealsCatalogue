@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:dicoding_submission/src/models/favorite_meals.dart';
+import 'package:dicoding_submission/src/models/meals.dart';
 import 'package:dicoding_submission/src/resources/local/favorite_provider.dart';
 import 'package:dicoding_submission/src/view/detail_screen.dart';
 
@@ -11,8 +11,8 @@ class FavoriteScreen extends StatefulWidget {
 
 class _FavoriteScreenState extends State<FavoriteScreen> {
 
-  Future<List<FavoriteMeals>> _dessertFavoriteFoods;
-  Future<List<FavoriteMeals>> _seafoodFavoriteFoods;
+  Future<List<Meals>> _dessertFavoriteFoods;
+  Future<List<Meals>> _seafoodFavoriteFoods;
 
   @override
   void initState() {
@@ -57,10 +57,10 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
 
   Widget _buildWidgetDessertFavorite() {
     return FutureBuilder(
-      initialData: <FavoriteMeals>[],
+      initialData: <Meals>[],
       future: _dessertFavoriteFoods,
       builder:
-          (BuildContext context, AsyncSnapshot<List<FavoriteMeals>> snapshot) {
+          (BuildContext context, AsyncSnapshot<List<Meals>> snapshot) {
         if (snapshot.hasError) {
 //          _scaffoldState.currentState.showSnackBar(
 //            SnackBar(content: Text(snapshot.error.toString())),
@@ -69,7 +69,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
             child: Text("Something wrong"),
           );
         } else if (snapshot.connectionState == ConnectionState.done) {
-          List<FavoriteMeals> favoriteFoods = snapshot.data;
+          List<Meals> favoriteFoods = snapshot.data;
           if (favoriteFoods.isEmpty) {
             return Center(
               child: Text(
@@ -85,7 +85,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
             return GridView.builder(
               itemCount: favoriteFoods.length,
               itemBuilder: (context, index) {
-                FavoriteMeals favoriteFood = favoriteFoods[index];
+                Meals favoriteFood = favoriteFoods[index];
                 return GestureDetector(
 //                  onTap: () {
 //                    _scaffoldState.currentState.showSnackBar(
@@ -152,7 +152,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
   }
 
   Future navigateToDetailScreen(
-      BuildContext context, FavoriteMeals favoriteFood, String type) async {
+      BuildContext context, Meals favoriteFood, String type) async {
     bool result = await Navigator.push(
       context,
       MaterialPageRoute(
@@ -177,10 +177,10 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
 
   Widget _buildWidgetSeafoodFavorite() {
     return FutureBuilder(
-      initialData: <FavoriteMeals>[],
+      initialData: <Meals>[],
       future: _seafoodFavoriteFoods,
       builder:
-          (BuildContext context, AsyncSnapshot<List<FavoriteMeals>> snapshot) {
+          (BuildContext context, AsyncSnapshot<List<Meals>> snapshot) {
         if (snapshot.hasError) {
 //          _scaffoldState.currentState.showSnackBar(
 //            SnackBar(content: Text(snapshot.error.toString())),
@@ -189,7 +189,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
             child: Text("Something wrong"),
           );
         } else if (snapshot.connectionState == ConnectionState.done) {
-          List<FavoriteMeals> favoriteFoods = snapshot.data;
+          List<Meals> favoriteFoods = snapshot.data;
           if (favoriteFoods.isEmpty) {
             return Center(
               child: Text(
@@ -205,7 +205,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
             return GridView.builder(
               itemCount: favoriteFoods.length,
               itemBuilder: (context, index) {
-                FavoriteMeals favoriteFood = favoriteFoods[index];
+                Meals favoriteFood = favoriteFoods[index];
                 return GestureDetector(
 //                  onTap: () {
 //                    _scaffoldState.currentState.showSnackBar(

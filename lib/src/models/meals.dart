@@ -33,6 +33,7 @@ class Meals {
   String strIngredient3;
   String strIngredient4;
   String strIngredient5;
+  String type;
 
   Meals(
       {this.idMeal,
@@ -45,7 +46,8 @@ class Meals {
         this.strIngredient2,
         this.strIngredient3,
         this.strIngredient4,
-        this.strIngredient5});
+        this.strIngredient5,
+      this.type});
 
   Meals.fromJson(Map<String, dynamic> json) {
     idMeal = json['idMeal'];
@@ -59,6 +61,7 @@ class Meals {
     strIngredient3 = json['strIngredient3'];
     strIngredient4 = json['strIngredient4'];
     strIngredient5 = json['strIngredient5'];
+    type = json['type'];
   }
 
   Map<String, dynamic> toJson() {
@@ -74,6 +77,7 @@ class Meals {
     data['strIngredient3'] = this.strIngredient3;
     data['strIngredient4'] = this.strIngredient4;
     data['strIngredient5'] = this.strIngredient5;
+    data['type'] = this.type;
     return data;
   }
 }
