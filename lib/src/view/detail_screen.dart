@@ -4,14 +4,17 @@ import '../blocs/meals_detail_bloc.dart';
 import 'package:dicoding_submission/src/models/meals.dart';
 import 'package:dicoding_submission/src/app.dart';
 import 'package:toast/toast.dart';
+import 'package:dicoding_submission/src/resources/local/favorite_provider.dart';
+import 'package:dicoding_submission/src/models/favorite_meals.dart';
 
 class DetailScreen extends StatefulWidget {
 
   final String idMeal;
   final String strMeal;
   final String strMealThumb;
+  final String type;
 
-  const DetailScreen({Key key, @required this.idMeal, this.strMeal, this.strMealThumb}) : super(key: key);
+  const DetailScreen({Key key, @required this.idMeal, this.strMeal, this.strMealThumb, this.type}) : super(key: key);
 
   @override
   _DetailScreenState createState() => _DetailScreenState();
@@ -22,13 +25,17 @@ class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMix
 
   final bloc = MealsDetailBloc();
   Icon actionIcon = new Icon(Icons.favorite_border, color: Colors.pink,);
-  bool _isFavorite = false;
   MealsResult mealsResult;
+  bool _isChanged = false;
+  bool _isFavorite = false;
 
   @override
   void initState() {
     super.initState();
     bloc.fetchDetailMeals(widget.idMeal);
+    FavoriteProvider.db.getFavoriteFoodById(widget.idMeal).then((value) {
+      setState(() => _isFavorite = value != null);
+    });
   }
 
   @override
@@ -79,9 +86,52 @@ class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMix
           showToast(context, "Favorite", duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
         },
         backgroundColor: Colors.pinkAccent,
-        child: Icon(Icons.favorite_border),
+        child: _buildActionAppBar(),
       ),
     );
+  }
+
+  Widget _buildActionAppBar() {
+    if (_isFavorite) {
+      return GestureDetector(
+        onTap: () {
+          FavoriteProvider.db.deleteFavoriteFoodById(widget.idMeal).then((value) {
+            if (value > 0) {
+              _isChanged = true;
+              setState(() => _isFavorite = false);
+            }
+          });
+        },
+        child: Padding(
+          key: Key("options menu favorite"),
+          padding: const EdgeInsets.all(16.0),
+          child: Icon(Icons.favorite),
+        ),
+      );
+    } else {
+      return GestureDetector(
+        onTap: () {
+          FavoriteMeals favoriteFood = FavoriteMeals(
+            idMeal: widget.idMeal,
+            name: widget.strMeal,
+            thumbnail: widget.strMealThumb,
+//            material: _materials.toString(),
+            type: widget.type,
+          );
+          FavoriteProvider.db.insertFavoriteFood(favoriteFood).then((value) {
+            if (value > 0) {
+              _isChanged = true;
+              setState(() => _isFavorite = true);
+            }
+          });
+        },
+        child: Padding(
+          key: Key("options menu favorite"),
+          padding: const EdgeInsets.all(16.0),
+          child: Icon(Icons.favorite_border),
+        ),
+      );
+    }
   }
 
   getListDetail() {

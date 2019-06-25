@@ -80,7 +80,8 @@ class SeafoodState extends State<SeafoodScreen> {
                           DetailScreen(
                               idMeal: snapshot.data.meals[index].idMeal,
                               strMeal: snapshot.data.meals[index].strMeal,
-                              strMealThumb: snapshot.data.meals[index].strMealThumb),
+                              strMealThumb: snapshot.data.meals[index].strMealThumb,
+                              type: "seafood"),
                     ));
               },
               photo: snapshot.data.meals[index].strMealThumb,

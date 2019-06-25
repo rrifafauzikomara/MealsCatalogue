@@ -79,9 +79,10 @@ class DesertState extends State<DesertScreen> {
                       pageBuilder: (BuildContext context, Animation<double> animation,
                           Animation<double> secondaryAnimation) =>
                           DetailScreen(
-                              idMeal: snapshot.data.meals[index].idMeal,
-                              strMeal: snapshot.data.meals[index].strMeal,
-                              strMealThumb: snapshot.data.meals[index].strMealThumb),
+                            idMeal: snapshot.data.meals[index].idMeal,
+                            strMeal: snapshot.data.meals[index].strMeal,
+                            strMealThumb: snapshot.data.meals[index].strMealThumb,
+                            type: "dessert",),
                     ));
               },
               photo: snapshot.data.meals[index].strMealThumb,
