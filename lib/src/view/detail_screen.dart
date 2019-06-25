@@ -13,7 +13,7 @@ class DetailScreen extends StatefulWidget {
   final String strMealThumb;
   final String type;
 
-  const DetailScreen({Key key, @required this.idMeal, this.strMeal, this.strMealThumb, this.type}) : super(key: key);
+  DetailScreen({Key key, @required this.idMeal, this.strMeal, this.strMealThumb, this.type}) : super(key: key);
 
   @override
   _DetailScreenState createState() => _DetailScreenState();
@@ -96,7 +96,7 @@ class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMix
           showToast(context, "Remove from Favorite", duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
         },
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: EdgeInsets.all(16.0),
           child: Icon(Icons.favorite),
         ),
       );
@@ -117,7 +117,7 @@ class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMix
           showToast(context, "Add to Favorite", duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
         },
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: EdgeInsets.all(16.0),
           child: Icon(Icons.favorite_border),
         ),
       );
