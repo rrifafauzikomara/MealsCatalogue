@@ -5,6 +5,7 @@ import '../hero/hero_animation.dart';
 import 'package:dicoding_submission/src/app.dart';
 import 'detail_screen.dart';
 import 'package:toast/toast.dart';
+import 'meals_search.dart';
 
 
 class DesertScreen extends StatefulWidget {
@@ -31,6 +32,17 @@ class DesertState extends State<DesertScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        floatingActionButton: Container(
+          margin: EdgeInsets.only(bottom: 50.0),
+          child: FloatingActionButton(
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => MealsSearch()));
+            },
+            backgroundColor: Colors.pinkAccent,
+            child: Icon(Icons.search),
+          ),
+        ),
       body: getListDesert()
     );
   }
