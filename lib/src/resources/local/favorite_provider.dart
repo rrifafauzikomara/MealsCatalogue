@@ -21,6 +21,19 @@ class FavoriteProvider {
     return _database;
   }
 
+  String idMeal;
+  String strMeal;
+  String strCategory;
+  String strArea;
+  String strInstructions;
+  String strMealThumb;
+  String strIngredient1;
+  String strIngredient2;
+  String strIngredient3;
+  String strIngredient4;
+  String strIngredient5;
+  String type;
+
   initDB() async {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
     String path = join(documentsDirectory.path, "meals_favorite.db");
@@ -29,9 +42,16 @@ class FavoriteProvider {
           String queryCreateTableMealsFavorite = "CREATE TABLE favorite ("
               "id INTEGER PRIMARY KEY,"
               "idMeal TEXT,"
-              "name TEXT,"
-              "thumbnail TEXT,"
-              "material TEXT,"
+              "strMeal TEXT,"
+              "strCategory TEXT,"
+              "strArea TEXT,"
+              "strInstructions TEXT,"
+              "strMealThumb TEXT,"
+              "strIngredient1 TEXT,"
+              "strIngredient2 TEXT,"
+              "strIngredient3 TEXT,"
+              "strIngredient4 TEXT,"
+              "strIngredient5 TEXT,"
               "type TEXT"
               ")";
           await db.execute(queryCreateTableMealsFavorite);

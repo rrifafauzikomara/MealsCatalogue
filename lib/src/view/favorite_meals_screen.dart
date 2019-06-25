@@ -105,7 +105,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                         Hero(
                           tag: favoriteFood.idMeal,
                           child: Image.network(
-                            favoriteFood.thumbnail,
+                            favoriteFood.strMealThumb,
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -124,7 +124,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                                   left: 12.0,
                                 ),
                                 child: Text(
-                                  favoriteFood.name,
+                                  favoriteFood.strMeal,
                                   textAlign: TextAlign.center,
                                   maxLines: 2,
                                   softWrap: true,
@@ -158,8 +158,8 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
       MaterialPageRoute(
         builder: (context) => DetailScreen(
           idMeal: favoriteFood.idMeal,
-          strMealThumb: favoriteFood.thumbnail,
-          strMeal: favoriteFood.name,
+          strMealThumb: favoriteFood.strMealThumb,
+          strMeal: favoriteFood.strMeal,
           type: type,
         ),
       ),
@@ -225,7 +225,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                         Hero(
                           tag: favoriteFood.idMeal,
                           child: Image.network(
-                            favoriteFood.thumbnail,
+                            favoriteFood.strMealThumb,
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -244,7 +244,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                                   left: 12.0,
                                 ),
                                 child: Text(
-                                  favoriteFood.name,
+                                  favoriteFood.strMeal,
                                   textAlign: TextAlign.center,
                                   maxLines: 2,
                                   softWrap: true,

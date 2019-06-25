@@ -106,8 +106,8 @@ class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMix
         onTap: () {
           FavoriteMeals favoriteFood = FavoriteMeals(
             idMeal: widget.idMeal,
-            name: widget.strMeal,
-            thumbnail: widget.strMealThumb,
+            strMeal: widget.strMeal,
+            strMealThumb: widget.strMealThumb,
             type: widget.type,
           );
           FavoriteProvider.db.insertFavoriteFood(favoriteFood).then((value) {
