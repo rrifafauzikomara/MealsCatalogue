@@ -18,7 +18,7 @@ class _SeafoodFavoriteState extends State<SeafoodFavorite> {
   @override
   void initState() {
     super.initState();
-    _seafoodFavoriteFoods = FavoriteProvider.db.getFavoriteFoodsByType("seafood");
+    _seafoodFavoriteFoods = FavoriteProvider.db.getFavoriteMealsByType("seafood");
   }
 
   @override
@@ -42,8 +42,8 @@ class _SeafoodFavoriteState extends State<SeafoodFavorite> {
                 child: Text(
                   "Seafood Favorite not available",
                   style: TextStyle(
-                    color: Colors.grey,
-                    fontSize: 24.0,
+                    color: Colors.white,
+                    fontSize: 20.0,
                   ),
                   textAlign: TextAlign.center,
                 ),

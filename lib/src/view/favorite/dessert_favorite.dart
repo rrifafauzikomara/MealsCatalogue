@@ -18,7 +18,7 @@ class _DessertFavoriteState extends State<DessertFavorite> {
   @override
   void initState() {
     super.initState();
-    _dessertFavoriteFoods = FavoriteProvider.db.getFavoriteFoodsByType("dessert");
+    _dessertFavoriteFoods = FavoriteProvider.db.getFavoriteMealsByType("dessert");
   }
 
   @override
@@ -42,8 +42,8 @@ class _DessertFavoriteState extends State<DessertFavorite> {
                 child: Text(
                   "Dessert Favorite not available",
                   style: TextStyle(
-                    color: Colors.grey,
-                    fontSize: 24.0,
+                    color: Colors.white,
+                    fontSize: 20.0,
                   ),
                   textAlign: TextAlign.center,
                 ),

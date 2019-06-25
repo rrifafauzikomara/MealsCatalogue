@@ -30,7 +30,7 @@ class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMix
   void initState() {
     super.initState();
     bloc.fetchDetailMeals(widget.idMeal);
-    FavoriteProvider.db.getFavoriteFoodById(widget.idMeal).then((value) {
+    FavoriteProvider.db.getFavoriteMealsById(widget.idMeal).then((value) {
       setState(() => _isFavorite = value != null);
     });
   }
@@ -88,7 +88,7 @@ class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMix
     if (_isFavorite) {
       return GestureDetector(
         onTap: () {
-          FavoriteProvider.db.deleteFavoriteFoodById(widget.idMeal).then((value) {
+          FavoriteProvider.db.deleteFavoriteMealsById(widget.idMeal).then((value) {
             if (value > 0) {
               setState(() => _isFavorite = false);
             }
@@ -109,7 +109,7 @@ class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMix
             strMealThumb: widget.strMealThumb,
             type: widget.type,
           );
-          FavoriteProvider.db.insertFavoriteFood(favoriteFood).then((value) {
+          FavoriteProvider.db.addFavoriteMeals(favoriteFood).then((value) {
             if (value > 0) {
               setState(() => _isFavorite = true);
             }
