@@ -3,7 +3,7 @@ import 'package:toast/toast.dart';
 
 import 'package:dicoding_submission/src/view/seafood_screen.dart';
 import 'package:dicoding_submission/src/view/desert_screen.dart';
-import 'package:dicoding_submission/src/view/favorite_meals_screen.dart';
+import 'package:dicoding_submission/src/view/favorite/home_favorite.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
 class MyApp extends StatelessWidget {
