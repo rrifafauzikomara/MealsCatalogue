@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:dicoding_submission/src/models/meals.dart';
 import 'package:dicoding_submission/src/resources/local/favorite_provider.dart';
+import 'package:dicoding_submission/src/hero/hero_animation.dart';
+import 'package:toast/toast.dart';
+import 'package:dicoding_submission/src/app.dart';
+import 'package:dicoding_submission/src/view/detail_screen.dart';
 
 class DessertFavorite extends StatefulWidget {
   @override
@@ -19,98 +23,87 @@ class _DessertFavoriteState extends State<DessertFavorite> {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      initialData: <Meals>[],
-      future: _dessertFavoriteFoods,
-      builder:
-          (BuildContext context, AsyncSnapshot<List<Meals>> snapshot) {
-        if (snapshot.hasError) {
-//          _scaffoldState.currentState.showSnackBar(
-//            SnackBar(content: Text(snapshot.error.toString())),
-//          );
-          return Center(
-            child: Text("Something wrong"),
-          );
-        } else if (snapshot.connectionState == ConnectionState.done) {
-          List<Meals> favoriteFoods = snapshot.data;
-          if (favoriteFoods.isEmpty) {
+    return Container(
+      color: Color.fromRGBO(58, 66, 86, 1.0),
+      child: FutureBuilder(
+        initialData: <Meals>[],
+        future: _dessertFavoriteFoods,
+        builder:
+            (BuildContext context, AsyncSnapshot<List<Meals>> snapshot) {
+          if (snapshot.hasError) {
+            showToast(context, snapshot.error.toString(), duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
             return Center(
-              child: Text(
-                "Dessert Favorite not available",
-                style: TextStyle(
-                  color: Colors.grey,
-                  fontSize: 24.0,
-                ),
-                textAlign: TextAlign.center,
-              ),
+              child: Text("Something wrong"),
             );
-          } else {
-            return GridView.builder(
-              itemCount: favoriteFoods.length,
-              itemBuilder: (context, index) {
-                Meals favoriteFood = favoriteFoods[index];
-                return GestureDetector(
-//                  onTap: () {
-//                    _scaffoldState.currentState.showSnackBar(
-//                      SnackBar(
-//                        content: Text(favoriteFood.name),
-//                        action: SnackBarAction(
-//                          label: "Open Detail",
-//                          onPressed: () => navigateToDetailScreen(
-//                              context, favoriteFood, "dessert"),
-//                        ),
-//                      ),
-//                    );
-//                  },
-                  child: Card(
-                    child: Stack(
-                      children: <Widget>[
-                        Hero(
-                          tag: favoriteFood.idMeal,
-                          child: Image.network(
-                            favoriteFood.strMealThumb,
-                            fit: BoxFit.cover,
+          } else if (snapshot.connectionState == ConnectionState.done) {
+            List<Meals> favoriteFoods = snapshot.data;
+            if (favoriteFoods.isEmpty) {
+              return Center(
+                child: Text(
+                  "Dessert Favorite not available",
+                  style: TextStyle(
+                    color: Colors.grey,
+                    fontSize: 24.0,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              );
+            } else {
+              return GridView.builder(
+                itemCount: favoriteFoods.length,
+                gridDelegate:
+                SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+                itemBuilder: (BuildContext context, int index) {
+                  return GestureDetector(
+                    child: Card(
+                      elevation: 2.0,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(5))),
+                      margin: EdgeInsets.all(10),
+                      child: GridTile(
+                        child: PhotoHero(
+                          tag: favoriteFoods[index].strMeal,
+                        onTap: () {
+                          showToast(context, favoriteFoods[index].strMeal, duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
+                          Navigator.push(
+                              context,
+                              PageRouteBuilder(
+                                transitionDuration: Duration(milliseconds: 777),
+                                pageBuilder: (BuildContext context, Animation<double> animation,
+                                    Animation<double> secondaryAnimation) =>
+                                    DetailScreen(
+                                        idMeal: favoriteFoods[index].idMeal,
+                                        strMeal: favoriteFoods[index].strMeal,
+                                        strMealThumb: favoriteFoods[index].strMealThumb,
+                                        type: "seafood"),
+                              ));
+                        },
+                          photo: favoriteFoods[index].strMealThumb,
+                        ),
+                        footer: Container(
+                          color: Colors.white70,
+                          padding: EdgeInsets.all(5.0),
+                          child: Text(
+                            favoriteFoods[index].strMeal,
+                            textAlign: TextAlign.center,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, color: Colors.deepOrange),
                           ),
                         ),
-                        Align(
-                          alignment: Alignment.bottomCenter,
-                          child: Container(
-                            color: Colors.white,
-                            width: double.infinity,
-                            height: 40.0,
-                            child: Center(
-                              child: Padding(
-                                padding: const EdgeInsets.only(
-                                  top: 4.0,
-                                  right: 12.0,
-                                  bottom: 8.0,
-                                  left: 12.0,
-                                ),
-                                child: Text(
-                                  favoriteFood.strMeal,
-                                  textAlign: TextAlign.center,
-                                  maxLines: 2,
-                                  softWrap: true,
-                                ),
-                              ),
-                            ),
-                          ),
-                        )
-                      ],
+                      ),
                     ),
-                  ),
-                );
-              },
-              gridDelegate:
-              SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+                  );
+                },
+              );
+            }
+          } else {
+            return Center(
+              child: CircularProgressIndicator(),
             );
           }
-        } else {
-          return Center(
-            child: CircularProgressIndicator(),
-          );
-        }
-      },
+        },
+      ),
     );
   }
 

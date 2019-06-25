@@ -82,7 +82,7 @@ class DesertState extends State<DesertScreen> {
                             idMeal: snapshot.data.meals[index].idMeal,
                             strMeal: snapshot.data.meals[index].strMeal,
                             strMealThumb: snapshot.data.meals[index].strMealThumb,
-                            type: "dessert",),
+                            type: "dessert"),
                     ));
               },
               photo: snapshot.data.meals[index].strMealThumb,
