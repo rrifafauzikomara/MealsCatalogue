@@ -49,53 +49,7 @@ class _SeafoodFavoriteState extends State<SeafoodFavorite> {
                 ),
               );
             } else {
-              return GridView.builder(
-                itemCount: favoriteFoods.length,
-                gridDelegate:
-                SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-                itemBuilder: (BuildContext context, int index) {
-                  return GestureDetector(
-                    child: Card(
-                      elevation: 2.0,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(5))),
-                      margin: EdgeInsets.all(10),
-                      child: GridTile(
-                        child: PhotoHero(
-                          tag: favoriteFoods[index].strMeal,
-                        onTap: () {
-                          showToast(context, favoriteFoods[index].strMeal, duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
-                          Navigator.push(
-                              context,
-                              PageRouteBuilder(
-                                transitionDuration: Duration(milliseconds: 777),
-                                pageBuilder: (BuildContext context, Animation<double> animation,
-                                    Animation<double> secondaryAnimation) =>
-                                    DetailScreen(
-                                        idMeal: favoriteFoods[index].idMeal,
-                                        strMeal: favoriteFoods[index].strMeal,
-                                        strMealThumb: favoriteFoods[index].strMealThumb,
-                                        type: "seafood"),
-                              ));
-                        },
-                          photo: favoriteFoods[index].strMealThumb,
-                        ),
-                        footer: Container(
-                          color: Colors.white70,
-                          padding: EdgeInsets.all(5.0),
-                          child: Text(
-                            favoriteFoods[index].strMeal,
-                            textAlign: TextAlign.center,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, color: Colors.deepOrange),
-                          ),
-                        ),
-                      ),
-                    ),
-                  );
-                },
-              );
+              return _showListFavoriteSeafood(favoriteFoods);
             }
           } else {
             return Center(
@@ -104,6 +58,56 @@ class _SeafoodFavoriteState extends State<SeafoodFavorite> {
           }
         },
       ),
+    );
+  }
+
+  Widget _showListFavoriteSeafood(List<Meals> favoriteFoods) {
+    return GridView.builder(
+      itemCount: favoriteFoods.length,
+      gridDelegate:
+      SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+      itemBuilder: (BuildContext context, int index) {
+        return GestureDetector(
+          child: Card(
+            elevation: 2.0,
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(5))),
+            margin: EdgeInsets.all(10),
+            child: GridTile(
+              child: PhotoHero(
+                tag: favoriteFoods[index].strMeal,
+                onTap: () {
+                  showToast(context, favoriteFoods[index].strMeal, duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
+                  Navigator.push(
+                      context,
+                      PageRouteBuilder(
+                        transitionDuration: Duration(milliseconds: 777),
+                        pageBuilder: (BuildContext context, Animation<double> animation,
+                            Animation<double> secondaryAnimation) =>
+                            DetailScreen(
+                                idMeal: favoriteFoods[index].idMeal,
+                                strMeal: favoriteFoods[index].strMeal,
+                                strMealThumb: favoriteFoods[index].strMealThumb,
+                                type: "seafood"),
+                      ));
+                },
+                photo: favoriteFoods[index].strMealThumb,
+              ),
+              footer: Container(
+                color: Colors.white70,
+                padding: EdgeInsets.all(5.0),
+                child: Text(
+                  favoriteFoods[index].strMeal,
+                  textAlign: TextAlign.center,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold, color: Colors.deepOrange),
+                ),
+              ),
+            ),
+          ),
+        );
+      },
     );
   }
 
