@@ -23,7 +23,6 @@ class DetailScreen extends StatefulWidget {
 class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMixin{
 
   final bloc = MealsDetailBloc();
-  MealsResult mealsResult;
   bool _isFavorite = false;
 
   @override
@@ -129,7 +128,6 @@ class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMix
         stream: bloc.detailMeals,
         builder: (context, AsyncSnapshot<MealsResult> snapshot) {
           if (snapshot.hasData) {
-            mealsResult = snapshot.data;
             return _showListDetail(
                 snapshot.data.meals[0].strCategory,
                 snapshot.data.meals[0].strArea,
