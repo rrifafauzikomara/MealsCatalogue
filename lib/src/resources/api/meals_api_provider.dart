@@ -8,7 +8,7 @@ class MealsApiProvider {
 
   static final String _baseUrl = 'https://www.themealdb.com/api/json/v1/1/';
 
-  Future<MealsResult> fetchMovieList(String mealsType) async {
+  Future<MealsResult> fetchMealsList(String mealsType) async {
     final response = await client.get(_baseUrl +"filter.php?c=$mealsType");
     if (response.statusCode == 200) {
       return MealsResult.fromJson(json.decode(response.body));
