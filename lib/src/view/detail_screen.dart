@@ -5,6 +5,7 @@ import 'package:dicoding_submission/src/models/meals.dart';
 import 'home_screen.dart';
 import 'package:toast/toast.dart';
 import 'package:dicoding_submission/src/resources/local/favorite_provider.dart';
+import 'package:dicoding_submission/src/common/meals_key.dart';
 
 class DetailScreen extends StatefulWidget {
 
@@ -51,6 +52,13 @@ class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMix
               expandedHeight: 270,
               floating: false,
               pinned: true,
+              leading: IconButton(
+                key: Key(KEY_TAP_BACK_BUTTON),
+                icon: Icon(Icons.arrow_back),
+                onPressed: (){
+                  Navigator.of(context).pop();
+                },
+              ),
               actions: <Widget>[
                 _buildActionAppBar(),
               ],
@@ -95,6 +103,7 @@ class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMix
           showToast(context, "Remove from Favorite", duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
         },
         child: Padding(
+          key: Key(KEY_TAP_ITEM_FAVORITE),
           padding: EdgeInsets.all(16.0),
           child: Icon(Icons.favorite),
         ),
@@ -116,6 +125,7 @@ class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMix
           showToast(context, "Add to Favorite", duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
         },
         child: Padding(
+          key: Key(KEY_TAP_ITEM_FAVORITE),
           padding: EdgeInsets.all(16.0),
           child: Icon(Icons.favorite_border),
         ),

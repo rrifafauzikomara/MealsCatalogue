@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'seafood_favorite.dart';
 import 'dessert_favorite.dart';
+import 'package:dicoding_submission/src/common/meals_key.dart';
 
 class FavoriteScreen extends StatefulWidget {
   @override
@@ -24,9 +25,11 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
               indicatorColor: Colors.white,
               tabs: [
                 Tab(
+                  key: Key(KEY_TAB_ITEM_FAVORITE_DESSERT),
                   text: "Dessert",
                 ),
                 Tab(
+                  key: Key(KEY_TAB_ITEM_FAVORITE_SEAFOOD),
                   text: "Seafood",
                 ),
               ],

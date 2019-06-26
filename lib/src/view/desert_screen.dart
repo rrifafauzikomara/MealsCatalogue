@@ -6,6 +6,7 @@ import 'home_screen.dart';
 import 'detail_screen.dart';
 import 'package:toast/toast.dart';
 import 'meals_search.dart';
+import 'package:dicoding_submission/src/common/meals_key.dart';
 
 
 class DesertScreen extends StatefulWidget {
@@ -69,12 +70,14 @@ class DesertState extends State<DesertScreen> {
   }
 
   Widget _showListDessert(AsyncSnapshot<MealsResult> snapshot) => GridView.builder(
+    key: Key(KEY_GRID_VIEW_DESSERT),
     itemCount: snapshot == null ? 0 : snapshot.data.meals.length,
     gridDelegate:
     SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
     itemBuilder: (BuildContext context, int index) {
       return GestureDetector(
         child: Card(
+          key: Key("tap_meals_" + snapshot.data.meals[index].idMeal),
           elevation: 2.0,
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(5))),

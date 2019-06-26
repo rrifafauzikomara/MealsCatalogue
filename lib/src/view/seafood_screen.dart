@@ -6,6 +6,7 @@ import 'home_screen.dart';
 import 'detail_screen.dart';
 import 'package:toast/toast.dart';
 import 'meals_search.dart';
+import 'package:dicoding_submission/src/common/meals_key.dart';
 
 class SeafoodScreen extends StatefulWidget {
   @override
@@ -34,6 +35,7 @@ class SeafoodState extends State<SeafoodScreen> {
         floatingActionButton: Container(
           margin: EdgeInsets.only(bottom: 50.0),
           child: FloatingActionButton(
+            key: Key(KEY_TAP_SEARCH),
             onPressed: () {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => MealsSearch()));
@@ -68,12 +70,14 @@ class SeafoodState extends State<SeafoodScreen> {
   }
 
   Widget _showListSeafood(AsyncSnapshot<MealsResult> snapshot) => GridView.builder(
+    key: Key(KEY_GRID_VIEW_SEAFOOD),
     itemCount: snapshot == null ? 0 : snapshot.data.meals.length,
     gridDelegate:
     SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
     itemBuilder: (BuildContext context, int index) {
       return GestureDetector(
         child: Card(
+          key: Key("tap_meals_" + snapshot.data.meals[index].idMeal),
           elevation: 2.0,
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(5))),

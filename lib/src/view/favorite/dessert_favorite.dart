@@ -5,6 +5,7 @@ import 'package:dicoding_submission/src/hero/hero_animation.dart';
 import 'package:toast/toast.dart';
 import '../home_screen.dart';
 import 'package:dicoding_submission/src/view/detail_screen.dart';
+import 'package:dicoding_submission/src/common/meals_key.dart';
 
 class DessertFavorite extends StatefulWidget {
   @override
@@ -63,12 +64,14 @@ class _DessertFavoriteState extends State<DessertFavorite> {
 
   Widget _showListFavoriteDessert(List<Meals> favoriteFoods) {
     return GridView.builder(
+      key: Key(KEY_GRID_VIEW_FAVORITE_DESSERT),
       itemCount: favoriteFoods.length,
       gridDelegate:
       SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
       itemBuilder: (BuildContext context, int index) {
         return GestureDetector(
           child: Card(
+            key: Key("tap_meals_favorite_" + favoriteFoods[index].idMeal),
             elevation: 2.0,
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(5))),

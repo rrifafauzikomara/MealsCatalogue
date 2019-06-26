@@ -5,6 +5,7 @@ import 'package:dicoding_submission/src/hero/hero_animation.dart';
 import 'package:toast/toast.dart';
 import 'home_screen.dart';
 import 'detail_screen.dart';
+import 'package:dicoding_submission/src/common/meals_key.dart';
 
 class MealsSearch extends StatefulWidget {
   @override
@@ -36,6 +37,7 @@ class _MealsSearchState extends State<MealsSearch> {
           return <Widget>[
             SliverAppBar(
               leading: IconButton(
+                key: Key(KEY_TAP_BACK_BUTTON),
                 icon: Icon(Icons.arrow_back),
                 onPressed: (){
                   Navigator.of(context).pop();
@@ -45,6 +47,7 @@ class _MealsSearchState extends State<MealsSearch> {
               floating: true,
               pinned: true,
               title: TextField(
+                key: Key(KEY_FIELD_SEARCH),
                 autofocus: true,
                 style: TextStyle(fontSize: 17, color: Colors.white),
                 decoration: InputDecoration.collapsed(
@@ -85,6 +88,7 @@ class _MealsSearchState extends State<MealsSearch> {
 
   Widget _showListResult(AsyncSnapshot<MealsResult> snapshot) {
     return GridView.builder(
+      key: Key(KEY_GRID_VIEW_SEARCH),
       itemCount: snapshot == null ? 0 : snapshot?.data?.meals?.length ?? 0,
       gridDelegate:
       SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),

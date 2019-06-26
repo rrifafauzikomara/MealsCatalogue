@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:toast/toast.dart';
-
+import 'package:dicoding_submission/src/common/meals_key.dart';
 import 'package:dicoding_submission/src/view/seafood_screen.dart';
 import 'package:dicoding_submission/src/view/desert_screen.dart';
 import 'package:dicoding_submission/src/view/favorite/home_favorite.dart';
@@ -45,18 +45,22 @@ class _HomePageState extends State<HomePage> {
               child: Theme(
                   data: Theme.of(context).copyWith(canvasColor: Colors.transparent),
                   child: CurvedNavigationBar(
+                    key: Key(KEY_BOTTOM_NAVIGATION),
                     index: 0,
                     height: 50.0,
                     items: <Widget>[
                       Container(
+                        key: Key(KEY_BOTTOM_ITEM_DESSERT),
                         padding: EdgeInsets.all(5.0),
                         child: Icon(Icons.free_breakfast, size: 30),
                       ),
                       Container(
+                        key: Key(KEY_BOTTOM_ITEM_SEAFOOD),
                         padding: EdgeInsets.all(5.0),
                         child: Icon(Icons.fastfood, size: 30),
                       ),
                       Container(
+                        key: Key(KEY_BOTTOM_ITEM_FAVORITE),
                         padding: EdgeInsets.all(5.0),
                         child: Icon(Icons.favorite, size: 30),
                       ),
