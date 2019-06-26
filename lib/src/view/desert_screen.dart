@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../models/meals.dart';
 import '../blocs/meals_list_bloc.dart';
 import '../hero/hero_animation.dart';
-import 'package:dicoding_submission/src/app.dart';
+import 'home_screen.dart';
 import 'detail_screen.dart';
 import 'package:toast/toast.dart';
 import 'meals_search.dart';

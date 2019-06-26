@@ -1,23 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:toast/toast.dart';
 
 import 'package:dicoding_submission/src/view/seafood_screen.dart';
 import 'package:dicoding_submission/src/view/desert_screen.dart';
 import 'package:dicoding_submission/src/view/favorite/home_favorite.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'The Meals',
-      theme: ThemeData(
-        primaryColor: Color.fromRGBO(58, 66, 86, 1.0),
-      ),
-      home: HomePage(),
-    );
-  }
-}
+import 'package:dicoding_submission/src/launcher/meals_config.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -34,12 +23,17 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    String title = "The Meals";
+    var config = AppConfig.of(context);
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+      ),
+    );
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          title,
+          config.appDisplayName,
           style: TextStyle(color: Colors.white),
         ),
       ),

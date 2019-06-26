@@ -3,7 +3,7 @@ import 'package:dicoding_submission/src/blocs/meals_search_bloc.dart';
 import 'package:dicoding_submission/src/models/meals.dart';
 import 'package:dicoding_submission/src/hero/hero_animation.dart';
 import 'package:toast/toast.dart';
-import 'package:dicoding_submission/src/app.dart';
+import 'home_screen.dart';
 import 'detail_screen.dart';
 
 class MealsSearch extends StatefulWidget {
