@@ -1,16 +1,31 @@
-# dicoding_submission
+# Meals Catalogue
 
-A new Flutter project.
+All submission MFDE (Menjadi Flutter Developer Expert) class from <a href="https://www.dicoding.com/academies/110/">dicoding</a> 
 
-## Getting Started
+## Branch master (Submission 1)
+### Screenshot
 
-This project is a starting point for a Flutter application.
+<pre>
+<img src="screenshot/1.png" width="250" height="500">     <img src="screenshot/2.png" width="250" height="500">
+</pre>
 
-A few resources to get you started if this is your first Flutter project:
+## Branch master (Submission 2)
+### Screenshot
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+<pre>
+<img src="screenshot/1.png" width="250" height="500">     <img src="screenshot/2.png" width="250" height="500">
+</pre>
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+## Branch master (Submission 3)
+### Screenshot
+
+<pre>
+<img src="screenshot/1.png" width="250" height="500">     <img src="screenshot/2.png" width="250" height="500">
+</pre>
+
+## Branch master (Submission 4)
+### Screenshot
+
+<pre>
+<img src="screenshot/1.png" width="250" height="500">     <img src="screenshot/2.png" width="250" height="500">
+</pre>
