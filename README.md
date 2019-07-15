@@ -2,6 +2,8 @@
 
 All submission MFDE (Menjadi Flutter Developer Expert) class from <a href="https://www.dicoding.com/academies/110/">dicoding</a> 
 
+This repo using API from <a href="https://www.themealdb.com/api.php">The Meal DB</a>
+
 ## Branch master (Submission 1)
 ### Screenshot
 
