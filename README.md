@@ -9,21 +9,21 @@ All submission MFDE (Menjadi Flutter Developer Expert) class from <a href="https
 <img src="screenshot/1.png" width="250" height="460">     <img src="screenshot/2.png" width="250" height="460">
 </pre>
 
-## Branch master (Submission 2)
+## Branch submission-2 (Submission 2)
 ### Screenshot
 
 <pre>
 <img src="screenshot/1.png" width="250" height="460">     <img src="screenshot/2.png" width="250" height="460">
 </pre>
 
-## Branch master (Submission 3)
+## Branch submission-3 (Submission 3)
 ### Screenshot
 
 <pre>
 <img src="screenshot/1.png" width="250" height="460">     <img src="screenshot/2.png" width="250" height="460">
 </pre>
 
-## Branch master (Submission 4)
+## Branch submission-4 (Final Project)
 ### Screenshot
 
 <pre>
