@@ -22,7 +22,7 @@ All submission MFDE (Menjadi Flutter Developer Expert) class from <a href="https
 * [x] <a href="https://pub.dev/packages/sqflite">Favorite (SQFlite)</a>
 * [x] <a href="https://flutter.dev/docs/deployment/flavors">Flavor</a>
 * [x] <a href="https://flutter.dev/docs/cookbook/testing/unit/mocking">Unit Testing (Mockito)</a>
-* [x] <a href="https://flutter.dev/docs/cookbook/testing/integration/introductionIntegration">Instrumentation Testing</a> Testing
+* [x] <a href="https://flutter.dev/docs/cookbook/testing/integration/introductionIntegration">Instrumentation Testing</a>
 
 ## Author
 
