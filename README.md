@@ -6,7 +6,7 @@ All submission MFDE (Menjadi Flutter Developer Expert) class from <a href="https
 ### Screenshot
 
 <pre>
-<img src="screenshot/1.png" width="250" height="480">     <img src="screenshot/2.png" width="250" height="480">
+<img src="screenshot/1.png" width="250" height="450">     <img src="screenshot/2.png" width="250" height="460">
 </pre>
 
 ## Branch master (Submission 2)
