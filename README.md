@@ -16,6 +16,7 @@ All submission MFDE (Menjadi Flutter Developer Expert) class from <a href="https
 * [x] <a href="https://medium.com/flutterpub/effective-bloc-pattern-45c36d76d5fe">BLoC</a>
 * [x] <a href="https://pub.dev/packages/curved_navigation_bar">Curved Navigation Bar</a>
 * [x] <a href="https://pub.dev/packages/toast">Toast</a>
+* [x] Collapsing Toolbar
 
 ## Author
 
