@@ -9,6 +9,10 @@ All submission MFDE (Menjadi Flutter Developer Expert) class from <a href="https
 <img src="screenshot/1.png" width="250" height="460">     <img src="screenshot/2.png" width="250" height="460">
 </pre>
 
+### Feature
+
+* [x] Http
+
 ## Branch submission-2 (Submission 2)
 ### Screenshot
 
@@ -29,3 +33,9 @@ All submission MFDE (Menjadi Flutter Developer Expert) class from <a href="https
 <pre>
 <img src="screenshot/1.png" width="250" height="460">     <img src="screenshot/2.png" width="250" height="460">
 </pre>
+
+## Author
+
+* **R Rifa Fauzi Komara**
+
+Jangan lupa untuk follow dan ★
