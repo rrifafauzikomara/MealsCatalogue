@@ -12,9 +12,10 @@ All submission MFDE (Menjadi Flutter Developer Expert) class from <a href="https
 ### Feature
 
 * [x] <a href="https://pub.dev/packages/http">Http</a>
-* [x] <a href="https://pub.dev/packages/json_annotation">JSON Annotation</a>
-* [x] <a href="https://pub.dev/packages/json_serializable">JSON Serializable</a>
+* [x] <a href="https://pub.dev/packages/rxdart">Rx Dart</a>
+* [x] <a href="https://medium.com/flutterpub/effective-bloc-pattern-45c36d76d5fe">BLoC</a>
 * [x] <a href="https://pub.dev/packages/curved_navigation_bar">Curved Navigation Bar</a>
+* [x] <a href="https://pub.dev/packages/toast">Toast</a>
 
 ## Author
 
