@@ -1,16 +1,25 @@
-# dicoding_submission
+# Meals Catalogue
 
-A new Flutter project.
+All submission MFDE (Menjadi Flutter Developer Expert) class from <a href="https://www.dicoding.com/academies/110/">dicoding</a> 
 
-## Getting Started
+## Branch submission-4 (Final Project)
+### Screenshot
 
-This project is a starting point for a Flutter application.
+<pre>
+<img src="screenshot/1.png" width="250" height="460">     <img src="screenshot/2.png" width="250" height="460">     <img src="screenshot/3.png" width="250" height="460">
+</pre>
 
-A few resources to get you started if this is your first Flutter project:
+### Feature
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+* [x] <a href="https://pub.dev/packages/http">Http</a>
+* [x] <a href="https://pub.dev/packages/rxdart">Rx Dart</a>
+* [x] <a href="https://medium.com/flutterpub/effective-bloc-pattern-45c36d76d5fe">BLoC</a>
+* [x] <a href="https://pub.dev/packages/curved_navigation_bar">Curved Navigation Bar</a>
+* [x] <a href="https://pub.dev/packages/toast">Toast</a>
+* [x] Collapsing Toolbar
 
-For help getting started with Flutter, src.view our
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+## Author
+
+* **R Rifa Fauzi Komara**
+
+Jangan lupa untuk follow dan ★
