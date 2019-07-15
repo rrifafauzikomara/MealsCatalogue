@@ -15,6 +15,8 @@ All submission MFDE (Menjadi Flutter Developer Expert) class from <a href="https
 * [x] <a href="https://pub.dev/packages/json_annotation">JSON Annotation</a>
 * [x] <a href="https://pub.dev/packages/json_serializable">JSON Serializable</a>
 * [x] <a href="https://pub.dev/packages/curved_navigation_bar">Curved Navigation Bar</a>
+* [x] <a href="https://flutter.dev/docs/development/ui/animations/hero-animations">Hero Animation</a>
+* [x] <a href="https://flutter.dev/docs/cookbook/design/snackbars">Snack Bar</a>
 
 ## Author
 
