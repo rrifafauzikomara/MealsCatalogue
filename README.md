@@ -11,7 +11,9 @@ All submission MFDE (Menjadi Flutter Developer Expert) class from <a href="https
 
 ### Feature
 
-* [x] Http
+* [x] <a href="https://pub.dev/packages/http">Http</a>
+* [x] <a href="https://pub.dev/packages/json_annotation">JSON Annotation</a>
+* [x] <a href="https://pub.dev/packages/json_serializable">JSON Serializable</a>
 
 ## Branch submission-2 (Submission 2)
 ### Screenshot
