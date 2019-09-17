@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 void main() {
   var configuredApp = AppConfig(
-    appDisplayName: "Meals Production",
+    appDisplayName: "Meals Catalogue",
     isDebug: false,
     appInternalId: 1,
     child: MyApp(),
