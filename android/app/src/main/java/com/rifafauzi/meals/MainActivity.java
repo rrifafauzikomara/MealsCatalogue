@@ -1,4 +1,4 @@
-package com.example.dicoding_submission;
+package com.rifafauzi.meals;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;
