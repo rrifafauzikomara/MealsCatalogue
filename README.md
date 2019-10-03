@@ -23,10 +23,12 @@ All submission MFDE (Menjadi Flutter Developer Expert) class from <a href="https
 * [x] <a href="https://flutter.dev/docs/deployment/flavors">Flavor</a> on Android Only
 * [x] <a href="https://flutter.dev/docs/cookbook/testing/unit/mocking">Unit Testing (Mockito)</a>
 * [x] <a href="https://flutter.dev/docs/cookbook/testing/integration/introductionIntegration">Instrumentation Testing</a>
+* [x] <a href="https://flutter.dev/docs/deployment/android">Build and Release for Android</a>
 
 ### Todo
 
 * [ ] Flavor on iOS
+* [ ] Build and Release for iOS
 
 ## Author
 
