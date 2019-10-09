@@ -4,6 +4,9 @@ All submission MFDE (Menjadi Flutter Developer Expert) class from <a href="https
 
 This repo using API from <a href="https://www.themealdb.com/api.php">The Meal DB</a>
 
+[<img src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png" alt="Get it on Google Play" height=
+"80">](https://play.google.com/store/apps/details?id=com.rifafauzi.meals.app_pro)
+
 ## Branch master (Submission 1)
 ### Screenshot
 
