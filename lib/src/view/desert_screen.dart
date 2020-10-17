@@ -1,12 +1,10 @@
-import 'package:flutter/material.dart';
-import '../models/meals.dart';
-import '../blocs/meals_list_bloc.dart';
-import '../hero/hero_animation.dart';
-import 'home_screen.dart';
-import 'detail_screen.dart';
-import 'package:toast/toast.dart';
-import 'meals_search.dart';
 import 'package:dicoding_submission/src/common/meals_key.dart';
+import 'package:dicoding_submission/src/view/custom_card_list.dart';
+import 'package:flutter/material.dart';
+
+import '../blocs/meals_list_bloc.dart';
+import '../models/meals.dart';
+import 'meals_search.dart';
 
 
 class DesertScreen extends StatefulWidget {
@@ -56,7 +54,7 @@ class DesertState extends State<DesertScreen> {
           stream: bloc.allMeals,
           builder: (context, AsyncSnapshot<MealsResult> snapshot) {
             if (snapshot.hasData) {
-              return _showListDessert(snapshot);
+              return _showListDessert(snapshot.data.meals);
             } else if (snapshot.hasError) {
               return Text(snapshot.error.toString());
             }
@@ -69,52 +67,14 @@ class DesertState extends State<DesertScreen> {
     );
   }
 
-  Widget _showListDessert(AsyncSnapshot<MealsResult> snapshot) => GridView.builder(
+  Widget _showListDessert(List<Meals> meals) => GridView.builder(
     key: Key(KEY_GRID_VIEW_DESSERT),
-    itemCount: snapshot == null ? 0 : snapshot.data.meals.length,
+    itemCount: meals == null ? 0 : meals.length,
     gridDelegate:
     SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
     itemBuilder: (BuildContext context, int index) {
       return GestureDetector(
-        child: Card(
-          key: Key("tap_meals_" + snapshot.data.meals[index].idMeal),
-          elevation: 2.0,
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(5))),
-          margin: EdgeInsets.all(10),
-          child: GridTile(
-            child: PhotoHero(
-              tag: snapshot.data.meals[index].strMeal,
-              onTap: () {
-                showToast(context, snapshot.data.meals[index].strMeal, duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
-                Navigator.push(
-                    context,
-                    PageRouteBuilder(
-                      transitionDuration: Duration(milliseconds: 777),
-                      pageBuilder: (BuildContext context, Animation<double> animation,
-                          Animation<double> secondaryAnimation) =>
-                          DetailScreen(
-                            idMeal: snapshot.data.meals[index].idMeal,
-                            strMeal: snapshot.data.meals[index].strMeal,
-                            strMealThumb: snapshot.data.meals[index].strMealThumb,
-                            type: "dessert"),
-                    ));
-              },
-              photo: snapshot.data.meals[index].strMealThumb,
-            ),
-            footer: Container(
-              color: Colors.white70,
-              padding: EdgeInsets.all(5.0),
-              child: Text(
-                snapshot.data.meals[index].strMeal,
-                textAlign: TextAlign.center,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                    fontWeight: FontWeight.bold, color: Colors.deepOrange),
-              ),
-            ),
-          ),
-        ),
+        child: CustomCardList(meals: meals[index], type: 'dessert',)
       );
     },
   );
